@@ -17,12 +17,12 @@ From the above feature description, you will:
    - Potential implementation approaches and trade-offs
    - Risk areas and complexity factors
 
-2. **Information Gathering Phase**: Use the codebase-analyst and web-researcher subagents strategically:
-   - Run codebase-analyst with specific analysis instructions to understand current architecture, patterns, and relevant code
-   - Run web-researcher with targeted search queries for best practices, libraries, security considerations, and implementation patterns
+2. **Information Gathering Phase**: Use the @codebase-analyst and @web-researcher subagents strategically:
+   - Run @codebase-analyst with specific analysis instructions to understand current architecture, patterns, and relevant code
+   - Run @web-researcher with targeted search queries for best practices, libraries, security considerations, and implementation patterns
    - Iterate these subagents multiple times with refined queries as you discover new information needs
    - Continue until you have high confidence in both codebase understanding and external knowledge
-   - Any number of web-researcher and codebase-analyst subagents can be run in parallel
+   - Any number of @web-researcher and @codebase-analyst subagents can be run in parallel
 
 3. **Synthesis and Planning Phase**: Create a detailed implementation plan following this exact structure:
    - IMPORTANT: Save the implementation plan as a markdown file in the 'plans' folder with a descriptive filename (e.g., 'oauth2-authentication-integration.md')
