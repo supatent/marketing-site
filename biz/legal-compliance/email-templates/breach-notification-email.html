@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Important Security Notice</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .email-header {
+      background: #d32f2f;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      border-radius: 8px 8px 0 0;
+    }
+    .email-header h1 {
+      margin: 0;
+    }
+    .alert-icon {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+    .email-body {
+      background: #ffffff;
+      padding: 30px;
+      border: 1px solid #e0e0e0;
+      border-top: none;
+    }
+    .incident-box {
+      background: #fff3cd;
+      border-left: 4px solid #ff9800;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .incident-box h3 {
+      margin-top: 0;
+      color: #e65100;
+    }
+    .action-box {
+      background: #e3f2fd;
+      border-left: 4px solid #2196f3;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .action-box h3 {
+      margin-top: 0;
+      color: #1976d2;
+    }
+    .action-box ul {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    .action-box li {
+      margin: 10px 0;
+      font-weight: 500;
+    }
+    .action-btn {
+      display: inline-block;
+      background: #2196f3;
+      color: white;
+      padding: 12px 28px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      margin: 10px 0;
+    }
+    .action-btn:hover {
+      background: #1976d2;
+    }
+    .timeline {
+      background: #f5f5f5;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 15px 0;
+    }
+    .timeline-item {
+      display: flex;
+      margin: 10px 0;
+    }
+    .timeline-date {
+      font-weight: 600;
+      min-width: 150px;
+      color: #666;
+    }
+    .email-footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+      font-size: 14px;
+      border-top: 1px solid #e0e0e0;
+      margin-top: 30px;
+    }
+    .footer-links {
+      margin-top: 15px;
+    }
+    .footer-links a {
+      color: #2196f3;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    .warning-text {
+      color: #d32f2f;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-header">
+    <div class="alert-icon">⚠️</div>
+    <h1>Important Security Notice</h1>
+  </div>
+
+  <div class="email-body">
+    <p>Dear <strong>{{user_name}}</strong>,</p>
+
+    <p>
+      We are writing to inform you of a security incident that may have affected
+      your personal data stored with <strong>Vanua CMS</strong>.
+    </p>
+
+    <p class="warning-text">
+      We take the security of your information very seriously and want to provide
+      you with details about what happened and what we're doing to address it.
+    </p>
+
+    <div class="incident-box">
+      <h3>🔍 What Happened:</h3>
+      <p>{{incident_description}}</p>
+
+      <h3>📋 Information Involved:</h3>
+      <p>{{affected_data_types}}</p>
+
+      <h3>📅 Timeline:</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-date">Incident Occurred:</span>
+          <span>{{incident_date}}</span>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">Discovered:</span>
+          <span>{{discovery_date}}</span>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">Contained:</span>
+          <span>{{containment_date}}</span>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">Users Notified:</span>
+          <span>{{notification_date}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-box">
+      <h3>🛡️ What We're Doing:</h3>
+      <p>{{remedial_actions}}</p>
+
+      <ul>
+        <li>Immediately contained the breach and secured all systems</li>
+        <li>Conducted thorough investigation with cybersecurity experts</li>
+        <li>Notified relevant data protection authorities</li>
+        <li>Implemented additional security measures to prevent recurrence</li>
+        <li>Monitoring all systems for any suspicious activity</li>
+      </ul>
+    </div>
+
+    <div class="action-box">
+      <h3>🔐 What You Should Do:</h3>
+      <ul>
+        <li><strong>Change your password immediately</strong> - Use a strong, unique password</li>
+        <li><strong>Enable two-factor authentication (2FA)</strong> if not already enabled</li>
+        <li><strong>Monitor your account</strong> for any suspicious activity</li>
+        <li><strong>Review recent account activity</strong> in your security settings</li>
+        <li><strong>Be alert for phishing attempts</strong> - We will never ask for your password via email</li>
+      </ul>
+
+      <div style="text-align: center; margin: 20px 0;">
+        <a href="{{reset_password_url}}" class="action-btn">
+          🔒 Reset Your Password Now
+        </a>
+      </div>
+    </div>
+
+    <h3>📞 Need Assistance?</h3>
+    <p>
+      We understand this is concerning, and we're here to help. Our dedicated
+      support team is available to answer any questions you may have.
+    </p>
+
+    <ul>
+      <li><strong>Email:</strong> <a href="mailto:security@vanua.ai" style="color: #2196f3;">security@vanua.ai</a></li>
+      <li><strong>Support Center:</strong> <a href="{{support_url}}" style="color: #2196f3;">{{support_url}}</a></li>
+      <li><strong>Security Page:</strong> <a href="{{security_page_url}}" style="color: #2196f3;">Latest Updates</a></li>
+    </ul>
+
+    <h3>🔒 Our Commitment to Security</h3>
+    <p>
+      We deeply apologize for this incident. Your trust is paramount to us, and
+      we are committed to maintaining the highest standards of security and
+      transparency. We will continue to update you as we learn more and take
+      additional steps to protect your data.
+    </p>
+
+    <p style="margin-top: 30px;">
+      Sincerely,<br>
+      <strong>{{sender_name}}</strong><br>
+      <span style="color: #666;">{{sender_title}}</span><br>
+      Vanua CMS
+    </p>
+  </div>
+
+  <div class="email-footer">
+    <p>
+      This notification is required under GDPR Article 34 (Communication of a
+      personal data breach to the data subject). You are receiving this because
+      you have an account with Vanua CMS that may have been affected.
+    </p>
+    <div class="footer-links">
+      <a href="{{privacy_policy_url}}">Privacy Policy</a> |
+      <a href="{{security_policy_url}}">Security Policy</a> |
+      <a href="{{help_url}}">Help Center</a>
+    </div>
+    <p style="margin-top: 15px; font-size: 12px; color: #999;">
+      © {{current_year}} Vanua CMS. All rights reserved.<br>
+      Incident ID: {{incident_id}}
+    </p>
+  </div>
+</body>
+</html>

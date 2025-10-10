@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Data Export is Ready</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .email-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      border-radius: 8px 8px 0 0;
+    }
+    .email-body {
+      background: #ffffff;
+      padding: 30px;
+      border: 1px solid #e0e0e0;
+      border-top: none;
+    }
+    .download-section {
+      background: #f5f7fa;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      margin: 25px 0;
+    }
+    .download-btn {
+      display: inline-block;
+      background: #667eea;
+      color: white;
+      padding: 14px 32px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      margin: 10px 0;
+    }
+    .download-btn:hover {
+      background: #5568d3;
+    }
+    .expiry-notice {
+      color: #d32f2f;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+    .data-summary {
+      background: #e8f4f8;
+      border-left: 4px solid #1976d2;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .data-summary h3 {
+      margin-top: 0;
+      color: #1976d2;
+    }
+    .data-summary ul {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    .data-summary li {
+      margin: 8px 0;
+    }
+    .email-footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+      font-size: 14px;
+      border-top: 1px solid #e0e0e0;
+      margin-top: 30px;
+    }
+    .footer-links {
+      margin-top: 15px;
+    }
+    .footer-links a {
+      color: #667eea;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-header">
+    <h1>📦 Your Data Export is Ready</h1>
+  </div>
+
+  <div class="email-body">
+    <p>Hello <strong>{{user_name}}</strong>,</p>
+
+    <p>
+      As requested, we've prepared a complete export of your personal data from
+      <strong>Vanua CMS</strong>. Your data package is ready for download.
+    </p>
+
+    <div class="download-section">
+      <a href="{{secure_download_link}}" class="download-btn">
+        📥 Download Your Data
+      </a>
+      <p class="expiry-notice">🔒 Link expires in: <strong>7 days</strong></p>
+      <p style="font-size: 14px; color: #666;">
+        Download expires on: {{expiry_date}}
+      </p>
+    </div>
+
+    <div class="data-summary">
+      <h3>📋 Your export includes:</h3>
+      <ul>
+        <li><strong>Profile Information:</strong> Name, email, account settings</li>
+        <li><strong>Content & Projects:</strong> {{content_count}} items across {{project_count}} projects</li>
+        <li><strong>Uploaded Files:</strong> {{file_count}} files ({{total_file_size}})</li>
+        <li><strong>Account Settings:</strong> Preferences, theme, language</li>
+        <li><strong>Consent History:</strong> All privacy and cookie consents</li>
+        <li><strong>API Keys:</strong> List of generated API keys (hashed)</li>
+      </ul>
+    </div>
+
+    <h3>📄 Export Format</h3>
+    <p>
+      Your data is provided in <strong>JSON format</strong>, which is machine-readable
+      and can be imported into other services. Each data type is organized in a separate
+      file within a ZIP archive.
+    </p>
+
+    <h3>🔒 Security Notice</h3>
+    <p>
+      This download link is secure and can only be used once. After downloading, the
+      link will expire. If you need another export, you can request it from your
+      <a href="{{settings_url}}" style="color: #667eea;">account settings</a>.
+    </p>
+
+    <h3>❓ Need Help?</h3>
+    <p>
+      If you have any questions about your data or this export, please contact our
+      support team at <a href="mailto:support@vanua.ai" style="color: #667eea;">support@vanua.ai</a>.
+    </p>
+
+    <p style="margin-top: 30px;">
+      Best regards,<br>
+      <strong>The Vanua CMS Team</strong>
+    </p>
+  </div>
+
+  <div class="email-footer">
+    <p>
+      This email was sent to <strong>{{user_email}}</strong> in response to your
+      data export request under GDPR Article 20 (Right to Data Portability).
+    </p>
+    <div class="footer-links">
+      <a href="{{privacy_policy_url}}">Privacy Policy</a> |
+      <a href="{{help_url}}">Help Center</a> |
+      <a href="{{unsubscribe_url}}">Unsubscribe</a>
+    </div>
+    <p style="margin-top: 15px; font-size: 12px; color: #999;">
+      © {{current_year}} Vanua CMS. All rights reserved.
+    </p>
+  </div>
+</body>
+</html>
