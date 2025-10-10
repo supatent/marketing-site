@@ -6,6 +6,8 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://vibecms.com', // Update this with your actual domain
+
   vite: {
     plugins: [tailwindcss()]
   },
