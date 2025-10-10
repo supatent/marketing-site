@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Navigation from '../components/Navigation.astro';
 ---
 
 <!doctype html>
@@ -7,11 +8,13 @@ import '../styles/global.css';
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content="Built for AI agents. Keep your content consistent, compliant, and accurate. Connect Claude, ChatGPT, Gemini, and more to your CMS." />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Vibe CMS - AI-Powered Content Management</title>
 	</head>
-	<body>
+	<body class="bg-[#0A0A0B]">
+		<Navigation />
 		<slot />
 	</body>
 </html>

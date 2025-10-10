@@ -1,0 +1,209 @@
+---
+// Hero section with rotating headline and chat interface
+---
+
+<section class="relative overflow-hidden bg-[#0A0A0B] pt-20 pb-32">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Left: Headline and CTA -->
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
+            <span class="text-white">Built for</span>
+            <br />
+            <span id="rotating-text" class="inline-block min-h-[1.2em]" data-words='["AI Agents", "Claude", "ChatGPT", "Gemini", "Your AI"]' data-colors='["#00D4FF", "#FF6B35", "#4ADE80", "#A78BFA", "#F59E0B"]'>
+              <span class="text-[#00D4FF]">AI Agents</span>
+            </span>
+          </h1>
+          <p class="text-xl sm:text-2xl text-gray-400 max-w-xl">
+            Connect AI agents to your content management system. Keep your brand consistent, compliant, and accurate.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="#pricing" class="inline-flex items-center px-8 py-4 bg-[#00D4FF] text-black font-semibold rounded-lg hover:bg-[#00B8E0] transition-colors">
+            Get Started Free
+          </a>
+          <a href="#features" class="inline-flex items-center px-8 py-4 border border-gray-700 text-white font-semibold rounded-lg hover:border-gray-600 transition-colors">
+            See How It Works
+          </a>
+        </div>
+
+        <!-- Stats or trust indicators -->
+        <div class="flex flex-wrap gap-8 pt-4">
+          <div>
+            <div class="text-3xl font-bold text-white">99.9%</div>
+            <div class="text-sm text-gray-500">Uptime SLA</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-white">&lt;50ms</div>
+            <div class="text-sm text-gray-500">API Response</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-white">SOC 2</div>
+            <div class="text-sm text-gray-500">Certified</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Chat Interface Demo -->
+      <div class="relative">
+        <div class="bg-[#1A1A1C] rounded-2xl border border-gray-800 overflow-hidden shadow-2xl">
+          <!-- Chat Header -->
+          <div class="bg-[#0F0F10] px-6 py-4 border-b border-gray-800 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-3 h-3 rounded-full bg-red-500"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
+            <div class="text-sm text-gray-500 font-mono">AI Agent Console</div>
+          </div>
+
+          <!-- Chat Messages -->
+          <div class="p-6 space-y-4 h-[400px] overflow-y-auto">
+            <div class="space-y-2">
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#00D4FF] to-[#0080FF] flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <div class="text-sm text-gray-400 mb-1">AI Agent</div>
+                  <div class="bg-[#0F0F10] rounded-lg p-4 text-gray-300">
+                    Fetching product descriptions from Vibe CMS...
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <div class="text-sm text-gray-400 mb-1">Vibe CMS</div>
+                  <div class="bg-[#0F0F10] rounded-lg p-4 text-gray-300">
+                    <div class="flex items-center gap-2 mb-2">
+                      <span class="text-green-400">✓</span>
+                      <span>Content verified</span>
+                    </div>
+                    <div class="flex items-center gap-2 mb-2">
+                      <span class="text-green-400">✓</span>
+                      <span>Brand guidelines applied</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <span class="text-green-400">✓</span>
+                      <span>GDPR compliant</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#00D4FF] to-[#0080FF] flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <div class="text-sm text-gray-400 mb-1">AI Agent</div>
+                  <div class="bg-[#0F0F10] rounded-lg p-4 text-gray-300 border border-[#00D4FF]/30">
+                    Generated 15 product descriptions with 100% accuracy. Ready to publish.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress Indicator -->
+          <div class="px-6 py-4 bg-[#0F0F10] border-t border-gray-800">
+            <div class="flex items-center gap-2 mb-2">
+              <div class="text-xs text-gray-500">Processing</div>
+              <div class="flex-1 h-1 bg-gray-800 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-[#00D4FF] to-[#0080FF] scenario-progress"></div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between text-xs text-gray-500">
+              <span>Scenario: Product Content Generation</span>
+              <span id="scenario-counter">1/4</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background gradient effects -->
+  <div class="absolute top-0 left-1/4 w-96 h-96 bg-[#00D4FF]/10 rounded-full blur-3xl -z-10"></div>
+  <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl -z-10"></div>
+</section>
+
+<style>
+  @keyframes progress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+
+  .scenario-progress {
+    animation: progress 3s ease-in-out infinite;
+  }
+
+  #rotating-text {
+    position: relative;
+  }
+</style>
+
+<script>
+  // Rotating text effect
+  const rotatingText = document.getElementById('rotating-text');
+  if (rotatingText) {
+    const words = JSON.parse(rotatingText.getAttribute('data-words') || '[]');
+    const colors = JSON.parse(rotatingText.getAttribute('data-colors') || '[]');
+    let currentIndex = 0;
+
+    function rotateText() {
+      if (!rotatingText) return;
+      currentIndex = (currentIndex + 1) % words.length;
+      const span = rotatingText.querySelector('span');
+      if (span) {
+        // Fade out
+        span.style.opacity = '0';
+        span.style.transform = 'translateY(-10px)';
+
+        setTimeout(() => {
+          span.textContent = words[currentIndex];
+          span.style.color = colors[currentIndex];
+          // Fade in
+          span.style.opacity = '1';
+          span.style.transform = 'translateY(0)';
+        }, 300);
+      }
+    }
+
+    // Style for smooth transitions
+    const span = rotatingText.querySelector('span');
+    if (span) {
+      span.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      span.style.display = 'inline-block';
+    }
+
+    // Rotate every 3 seconds
+    setInterval(rotateText, 3000);
+  }
+
+  // Scenario counter
+  const scenarioCounter = document.getElementById('scenario-counter');
+  if (scenarioCounter) {
+    let count = 1;
+    setInterval(() => {
+      count = count >= 4 ? 1 : count + 1;
+      scenarioCounter.textContent = `${count}/4`;
+    }, 3000);
+  }
+</script>

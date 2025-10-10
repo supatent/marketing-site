@@ -1,0 +1,153 @@
+---
+// Pricing component for Vibe CMS marketing site
+---
+
+<section id="pricing" class="bg-[#0A0A0B] text-white py-32 px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-5xl md:text-6xl font-semibold mb-4 bg-gradient-to-br from-[#00D4FF] to-[#0080FF] bg-clip-text text-transparent">
+        Simple pricing for everyone
+      </h2>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+        Start building for free, upgrade when you need more.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      <!-- Free Plan -->
+      <div class="flex flex-col h-full bg-[#1A1A1C] border border-gray-800 rounded-2xl p-10 relative transition-all duration-300 hover:bg-[#1F1F21] hover:border-gray-700 hover:-translate-y-1">
+        <div class="text-center mb-8 pb-8 border-b border-gray-800">
+          <h3 class="text-2xl font-semibold mb-4 text-white">
+            Free
+          </h3>
+          <div class="flex flex-col items-center gap-1">
+            <span class="text-5xl font-bold text-white leading-none">$0</span>
+            <span class="text-base text-gray-400">forever</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col flex-1 gap-8">
+          <ul class="features-list flex-1">
+            <li>100 content pieces</li>
+            <li>AI safety checks</li>
+            <li>3 languages</li>
+            <li>Community support</li>
+          </ul>
+
+          <a
+            href="#"
+            class="mt-auto block w-full px-8 py-4 rounded-lg font-semibold text-base text-center no-underline transition-all duration-300 bg-[#1A1A1C] text-white border border-gray-800 hover:bg-[#1F1F21] hover:border-[#00D4FF] hover:-translate-y-0.5"
+          >
+            Get Started
+          </a>
+        </div>
+      </div>
+
+      <!-- Pro Plan (Featured) -->
+      <div class="flex flex-col h-full pricing-card-featured bg-[#1A1A1C] border border-[#00D4FF] rounded-2xl p-10 relative transition-all duration-300 hover:bg-[#1F1F21] hover:-translate-y-1">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#00D4FF] text-black px-4 py-2 rounded-full text-sm font-medium z-10 shadow-[0_4px_12px_rgba(0,212,255,0.3)]">
+          Most Popular
+        </div>
+        <div class="text-center mb-8 pb-8 border-b border-gray-800">
+          <h3 class="text-2xl font-semibold mb-4 text-white">
+            Pro
+          </h3>
+          <div class="flex flex-col items-center gap-1">
+            <span class="text-5xl font-bold text-white leading-none">$29</span>
+            <span class="text-base text-gray-400">per month</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col flex-1 gap-8">
+          <ul class="features-list flex-1">
+            <li>Unlimited content pieces</li>
+            <li>Advanced AI safety</li>
+            <li>50+ languages</li>
+            <li>SEO optimization</li>
+            <li>Version control</li>
+            <li>Priority support</li>
+          </ul>
+
+          <a
+            href="#"
+            class="mt-auto block w-full px-8 py-4 rounded-lg font-semibold text-base text-center no-underline transition-all duration-300 bg-[#00D4FF] text-black hover:bg-[#00B8E6] hover:-translate-y-0.5 shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
+          >
+            Start Free Trial
+          </a>
+        </div>
+      </div>
+
+      <!-- Enterprise Plan -->
+      <div class="flex flex-col h-full bg-[#1A1A1C] border border-gray-800 rounded-2xl p-10 relative transition-all duration-300 hover:bg-[#1F1F21] hover:border-gray-700 hover:-translate-y-1">
+        <div class="text-center mb-8 pb-8 border-b border-gray-800">
+          <h3 class="text-2xl font-semibold mb-4 text-white">
+            Enterprise
+          </h3>
+          <div class="flex flex-col items-center gap-1">
+            <span class="text-5xl font-bold text-white leading-none">Custom</span>
+            <span class="text-base text-gray-400">contact us</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col flex-1 gap-8">
+          <ul class="features-list flex-1">
+            <li>Everything in Pro</li>
+            <li>Custom AI models</li>
+            <li>On-premise deployment</li>
+            <li>Advanced security</li>
+            <li>Dedicated support</li>
+            <li>99.9% SLA</li>
+          </ul>
+
+          <a
+            href="#"
+            class="mt-auto block w-full px-8 py-4 rounded-lg font-semibold text-base text-center no-underline transition-all duration-300 bg-[#1A1A1C] text-white border border-gray-800 hover:bg-[#1F1F21] hover:border-[#00D4FF] hover:-translate-y-0.5"
+          >
+            Contact Sales
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center text-gray-400 text-base">
+      <p>All plans include a 14-day free trial. No credit card required.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Featured card gradient overlay - can't be done with Tailwind */
+.pricing-card-featured::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(0, 153, 204, 0.05) 100%);
+  pointer-events: none;
+}
+
+/* Features list checkmarks - can't set ::before content with Tailwind */
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.features-list li {
+  color: #9CA3AF;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.features-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #00D4FF;
+  font-weight: bold;
+}
+</style>

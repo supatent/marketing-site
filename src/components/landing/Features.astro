@@ -1,0 +1,382 @@
+---
+// PowerGrid/Features section with tabbed interface
+---
+
+<section id="features" class="py-20 bg-[#0F0F10]">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">
+        Built for AI-first teams
+      </h2>
+      <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+        Everything you need to manage AI-generated content safely and efficiently
+      </p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex flex-wrap justify-center gap-4 mb-12">
+      <button class="feature-tab px-6 py-3 rounded-lg font-semibold transition-all active" data-feature="safety">
+        AI Safety
+      </button>
+      <button class="feature-tab px-6 py-3 rounded-lg font-semibold transition-all" data-feature="translation">
+        Translation
+      </button>
+      <button class="feature-tab px-6 py-3 rounded-lg font-semibold transition-all" data-feature="seo">
+        SEO
+      </button>
+      <button class="feature-tab px-6 py-3 rounded-lg font-semibold transition-all" data-feature="versioning">
+        Versioning
+      </button>
+    </div>
+
+    <!-- Feature Content -->
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Terminal Demo -->
+      <div class="feature-demo" data-feature-content="safety">
+        <div class="bg-[#1A1A1C] rounded-xl border border-gray-800 overflow-hidden shadow-2xl">
+          <div class="bg-[#0F0F10] px-4 py-3 border-b border-gray-800 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-red-500"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
+            <span class="text-xs text-gray-400 font-mono">AI Safety Check</span>
+          </div>
+          <div class="p-6 font-mono text-sm space-y-3">
+            <div class="text-gray-500">$ vibe check content --ai-detection</div>
+            <div class="text-gray-300">Analyzing content...</div>
+            <div class="flex items-center gap-2 text-green-400">
+              <span>✓</span>
+              <span>Brand guidelines: Pass</span>
+            </div>
+            <div class="flex items-center gap-2 text-green-400">
+              <span>✓</span>
+              <span>Fact verification: Pass</span>
+            </div>
+            <div class="flex items-center gap-2 text-green-400">
+              <span>✓</span>
+              <span>Compliance check: Pass</span>
+            </div>
+            <div class="flex items-center gap-2 text-yellow-400">
+              <span>⚠</span>
+              <span>Tone adjustment suggested</span>
+            </div>
+            <div class="mt-4 p-3 bg-[#00D4FF]/10 border border-[#00D4FF]/30 rounded text-[#00D4FF]">
+              Content approved for publication
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-demo hidden" data-feature-content="translation">
+        <div class="bg-[#1A1A1C] rounded-xl border border-gray-800 overflow-hidden shadow-2xl">
+          <div class="bg-[#0F0F10] px-4 py-3 border-b border-gray-800 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-red-500"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
+            <span class="text-xs text-gray-400 font-mono">Translation Engine</span>
+          </div>
+          <div class="p-6 font-mono text-sm space-y-3">
+            <div class="text-gray-500">$ vibe translate --to es,fr,de</div>
+            <div class="text-gray-300">Translating 24 content items...</div>
+            <div class="flex items-center gap-2 text-green-400">
+              <span>✓</span>
+              <span>Spanish: 24/24 complete</span>
+            </div>
+            <div class="flex items-center gap-2 text-green-400">
+              <span>✓</span>
+              <span>French: 24/24 complete</span>
+            </div>
+            <div class="flex items-center gap-2 text-green-400">
+              <span>✓</span>
+              <span>German: 24/24 complete</span>
+            </div>
+            <div class="mt-4 p-3 bg-[#00D4FF]/10 border border-[#00D4FF]/30 rounded text-[#00D4FF]">
+              Translations published in 2.3 seconds
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-demo hidden" data-feature-content="seo">
+        <div class="bg-[#1A1A1C] rounded-xl border border-gray-800 overflow-hidden shadow-2xl">
+          <div class="bg-[#0F0F10] px-4 py-3 border-b border-gray-800 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-red-500"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
+            <span class="text-xs text-gray-400 font-mono">SEO Optimizer</span>
+          </div>
+          <div class="p-6 font-mono text-sm space-y-3">
+            <div class="text-gray-500">$ vibe seo optimize --auto</div>
+            <div class="text-gray-300">Optimizing meta tags...</div>
+            <div class="flex items-center gap-2 text-green-400">
+              <span>✓</span>
+              <span>Title tags generated</span>
+            </div>
+            <div class="flex items-center gap-2 text-green-400">
+              <span>✓</span>
+              <span>Meta descriptions created</span>
+            </div>
+            <div class="flex items-center gap-2 text-green-400">
+              <span>✓</span>
+              <span>Open Graph tags added</span>
+            </div>
+            <div class="flex items-center gap-2 text-green-400">
+              <span>✓</span>
+              <span>Schema markup injected</span>
+            </div>
+            <div class="mt-4 p-3 bg-[#00D4FF]/10 border border-[#00D4FF]/30 rounded text-[#00D4FF]">
+              SEO score: 98/100
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-demo hidden" data-feature-content="versioning">
+        <div class="bg-[#1A1A1C] rounded-xl border border-gray-800 overflow-hidden shadow-2xl">
+          <div class="bg-[#0F0F10] px-4 py-3 border-b border-gray-800 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-red-500"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
+            <span class="text-xs text-gray-400 font-mono">Version Control</span>
+          </div>
+          <div class="p-6 font-mono text-sm space-y-3">
+            <div class="text-gray-500">$ vibe rollback --version 3</div>
+            <div class="text-gray-300">Rolling back content...</div>
+            <div class="flex items-center gap-2 text-blue-400">
+              <span>→</span>
+              <span>Version 5 (current)</span>
+            </div>
+            <div class="flex items-center gap-2 text-gray-500">
+              <span>→</span>
+              <span>Version 4</span>
+            </div>
+            <div class="flex items-center gap-2 text-green-400">
+              <span>✓</span>
+              <span>Version 3 (restored)</span>
+            </div>
+            <div class="mt-4 p-3 bg-[#00D4FF]/10 border border-[#00D4FF]/30 rounded text-[#00D4FF]">
+              Rollback complete. Changes live instantly.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Description -->
+      <div class="space-y-6">
+        <div class="feature-description" data-feature-desc="safety">
+          <h3 class="text-3xl font-bold text-white mb-4">
+            AI Safety & Content Verification
+          </h3>
+          <p class="text-lg text-gray-400 mb-6">
+            Detect AI-generated content with industry-leading accuracy. Every piece of content is automatically checked against your brand guidelines, fact-checked, and verified for compliance before publication.
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-[#00D4FF] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="text-white font-semibold">Real-time fact checking</div>
+                <div class="text-gray-400 text-sm">Automatically verify claims and citations</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-[#00D4FF] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="text-white font-semibold">Brand consistency checks</div>
+                <div class="text-gray-400 text-sm">Ensure tone, style, and messaging align</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-[#00D4FF] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="text-white font-semibold">Compliance validation</div>
+                <div class="text-gray-400 text-sm">GDPR, accessibility, and industry standards</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="feature-description hidden" data-feature-desc="translation">
+          <h3 class="text-3xl font-bold text-white mb-4">
+            One-Click Translation
+          </h3>
+          <p class="text-lg text-gray-400 mb-6">
+            Translate your entire content library to 100+ languages with a single command. AI-powered translations maintain your brand voice and technical accuracy across all languages.
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-[#00D4FF] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="text-white font-semibold">100+ languages supported</div>
+                <div class="text-gray-400 text-sm">Cover every major market instantly</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-[#00D4FF] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="text-white font-semibold">Context-aware translations</div>
+                <div class="text-gray-400 text-sm">Maintains technical accuracy and nuance</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-[#00D4FF] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="text-white font-semibold">Instant deployment</div>
+                <div class="text-gray-400 text-sm">Translated content live in seconds</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="feature-description hidden" data-feature-desc="seo">
+          <h3 class="text-3xl font-bold text-white mb-4">
+            Automated SEO Optimization
+          </h3>
+          <p class="text-lg text-gray-400 mb-6">
+            AI generates perfect meta tags, descriptions, and schema markup for every piece of content. Optimize for search engines without manual work.
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-[#00D4FF] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="text-white font-semibold">Smart meta generation</div>
+                <div class="text-gray-400 text-sm">Titles and descriptions optimized for CTR</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-[#00D4FF] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="text-white font-semibold">Schema markup</div>
+                <div class="text-gray-400 text-sm">Automatic structured data for rich results</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-[#00D4FF] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="text-white font-semibold">Social media optimization</div>
+                <div class="text-gray-400 text-sm">Perfect Open Graph and Twitter cards</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="feature-description hidden" data-feature-desc="versioning">
+          <h3 class="text-3xl font-bold text-white mb-4">
+            Instant Rollback & Version Control
+          </h3>
+          <p class="text-lg text-gray-400 mb-6">
+            Every content change is versioned and can be rolled back instantly. Made a mistake? Revert to any previous version in one click.
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-[#00D4FF] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="text-white font-semibold">Complete history</div>
+                <div class="text-gray-400 text-sm">Track every change with full audit trail</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-[#00D4FF] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="text-white font-semibold">One-click rollback</div>
+                <div class="text-gray-400 text-sm">Revert changes instantly, no downtime</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-[#00D4FF] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="text-white font-semibold">Compare versions</div>
+                <div class="text-gray-400 text-sm">See exactly what changed between versions</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .feature-tab {
+    background: transparent;
+    color: #9CA3AF;
+    border: 1px solid #374151;
+  }
+
+  .feature-tab:hover {
+    border-color: #4B5563;
+    color: #D1D5DB;
+  }
+
+  .feature-tab.active {
+    background: linear-gradient(135deg, #00D4FF 0%, #0080FF 100%);
+    color: white;
+    border-color: #00D4FF;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.feature-tab');
+    const demos = document.querySelectorAll('.feature-demo');
+    const descriptions = document.querySelectorAll('.feature-description');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const feature = tab.getAttribute('data-feature');
+
+        // Update tabs
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // Update demos
+        demos.forEach(demo => {
+          if (demo.getAttribute('data-feature-content') === feature) {
+            demo.classList.remove('hidden');
+          } else {
+            demo.classList.add('hidden');
+          }
+        });
+
+        // Update descriptions
+        descriptions.forEach(desc => {
+          if (desc.getAttribute('data-feature-desc') === feature) {
+            desc.classList.remove('hidden');
+          } else {
+            desc.classList.add('hidden');
+          }
+        });
+      });
+    });
+  });
+</script>

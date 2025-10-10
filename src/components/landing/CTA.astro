@@ -1,0 +1,370 @@
+---
+// CTA Section Component
+---
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2 class="cta-title">
+        Ready to build with AI-powered content?
+      </h2>
+      <p class="cta-description">
+        Join thousands of developers using Vibe CMS to manage content for their AI agents. Get started in minutes with our simple SDK.
+      </p>
+
+      <div class="cta-terminal">
+        <div class="terminal-window compact">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-line input">
+              $ npm install @vibe-cms/sdk
+            </div>
+            <div class="terminal-line output">
+              ✓ Package installed successfully
+            </div>
+            <div class="terminal-line success">
+              ✓ Ready to connect your AI agents
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-actions">
+        <a href="#" class="btn-electric large">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+          </svg>
+          Start Now
+        </a>
+        <a href="#" class="btn-ghost large">
+          View Docs
+        </a>
+      </div>
+
+      <div class="trust-badges">
+        <div class="badge">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+          <span>5-star rating</span>
+        </div>
+        <div class="badge">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M9 11l3 3L22 4" />
+            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+          </svg>
+          <span>SOC 2 Compliance</span>
+        </div>
+        <div class="badge">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 6v6l4 2" />
+          </svg>
+          <span>99.9% Uptime</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background decoration -->
+  <div class="cta-bg-decoration">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+  </div>
+</section>
+
+<style>
+.cta-section {
+  padding: 120px 0;
+  background: linear-gradient(180deg, #0A0A0B 0%, #0F0F10 50%, #0A0A0B 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-content {
+  text-align: center;
+}
+
+.cta-title {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #FFFFFF 0%, #00D4FF 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .cta-title {
+    font-size: 3.75rem;
+  }
+}
+
+.cta-description {
+  font-size: 1.25rem;
+  color: #9CA3AF;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.cta-terminal {
+  max-width: 500px;
+  margin: 2rem auto;
+}
+
+.terminal-window.compact {
+  background: rgba(26, 26, 28, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.terminal-header {
+  padding: 0.75rem 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.dot-red {
+  background: #FF5F56;
+}
+
+.dot-yellow {
+  background: #FFBD2E;
+}
+
+.dot-green {
+  background: #27C93F;
+}
+
+.terminal-body {
+  padding: 1.5rem;
+  min-height: auto;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.95rem;
+}
+
+.terminal-line {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.terminal-line.input {
+  color: #E5E7EB;
+}
+
+.terminal-line.output,
+.terminal-line.success {
+  color: #50FA7B;
+}
+
+.cta-actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 3rem 0;
+}
+
+.btn-electric,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-electric.large,
+.btn-ghost.large {
+  padding: 18px 40px;
+  font-size: 1.125rem;
+}
+
+.btn-electric {
+  background: #00D4FF;
+  color: #000000;
+  border: none;
+}
+
+.btn-electric:hover {
+  background: #00BFEA;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+}
+
+.btn-electric svg {
+  margin-right: 12px;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-ghost:hover {
+  border-color: #00D4FF;
+  color: #00D4FF;
+  transform: translateY(-2px);
+}
+
+.trust-badges {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 4rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #9CA3AF;
+  font-size: 0.95rem;
+}
+
+.badge svg {
+  color: #00D4FF;
+}
+
+.cta-bg-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.3;
+}
+
+.orb-1 {
+  width: 600px;
+  height: 600px;
+  background: #00D4FF;
+  top: -300px;
+  left: -300px;
+  animation: float 20s ease-in-out infinite;
+}
+
+.orb-2 {
+  width: 400px;
+  height: 400px;
+  background: #50FA7B;
+  bottom: -200px;
+  right: -200px;
+  animation: float 15s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 80px 0;
+  }
+
+  .cta-title {
+    font-size: 2rem;
+  }
+
+  .cta-description {
+    font-size: 1.1rem;
+  }
+
+  .trust-badges {
+    gap: 1.5rem;
+  }
+
+  .badge {
+    font-size: 0.875rem;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-electric.large,
+  .btn-ghost.large {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+</style>

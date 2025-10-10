@@ -1,0 +1,251 @@
+---
+// Navigation component for marketing site
+---
+
+<header class="fixed top-0 w-full bg-[#0A0A0B]/90 backdrop-blur-xl z-50 border-b border-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      <!-- Logo/Brand -->
+      <div class="flex items-center">
+        <a
+          href="/"
+          class="flex items-center hover:opacity-80 transition-opacity duration-300"
+        >
+          <!-- Lightning Bolt Icon -->
+          <svg
+            class="w-8 h-8 text-[#00D4FF]"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 10V3L4 14h7v7l9-11h-7z"
+            />
+          </svg>
+          <!-- Brand Text -->
+          <span class="ml-3 text-xl font-semibold text-white">Vibe CMS</span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-6">
+        <a
+          href="#features"
+          class="text-sm text-gray-400 hover:text-white transition-colors scroll-smooth"
+        >
+          Features
+        </a>
+        <a
+          href="#how-it-works"
+          class="text-sm text-gray-400 hover:text-white transition-colors scroll-smooth"
+        >
+          How it Works
+        </a>
+        <a
+          href="#testimonials"
+          class="text-sm text-gray-400 hover:text-white transition-colors scroll-smooth"
+        >
+          Testimonials
+        </a>
+
+        <!-- Right Side Actions -->
+        <div class="flex items-center space-x-4 ml-6">
+          <a
+            href="#"
+            class="text-sm text-gray-400 hover:text-white transition-colors"
+          >
+            Sign In
+          </a>
+          <a
+            href="#"
+            class="px-4 py-2 bg-[#00D4FF] text-black text-sm font-medium rounded-lg hover:bg-[#00B8E0] transition-all duration-300"
+          >
+            Join Waitlist
+          </a>
+        </div>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-button"
+        class="md:hidden p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800/50 transition-colors"
+        aria-label="Toggle mobile menu"
+        aria-expanded="false"
+      >
+        <svg
+          id="menu-icon"
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+        <svg
+          id="close-icon"
+          class="w-6 h-6 hidden"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="md:hidden bg-[#0A0A0B] border-t border-gray-800 hidden"
+  >
+    <div class="px-4 pt-2 pb-3 space-y-1">
+      <!-- Mobile Navigation Items -->
+      <a
+        href="#features"
+        class="block px-3 py-2 text-base font-medium text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-md transition-colors mobile-nav-link"
+      >
+        Features
+      </a>
+      <a
+        href="#how-it-works"
+        class="block px-3 py-2 text-base font-medium text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-md transition-colors mobile-nav-link"
+      >
+        How it Works
+      </a>
+      <a
+        href="#testimonials"
+        class="block px-3 py-2 text-base font-medium text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-md transition-colors mobile-nav-link"
+      >
+        Testimonials
+      </a>
+
+      <!-- Mobile Actions -->
+      <div class="pt-4 pb-3 space-y-2 border-t border-gray-800 mt-2">
+        <a
+          href="#"
+          class="block px-3 py-2 text-base font-medium text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-md text-left transition-colors"
+        >
+          Sign In
+        </a>
+        <a
+          href="#"
+          class="block px-3 py-2 bg-[#00D4FF] text-black text-base font-medium rounded-lg hover:bg-[#00B8E0] text-center transition-all duration-300"
+        >
+          Join Waitlist
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Mobile menu animations */
+  #mobile-menu {
+    transition: all 0.3s ease-out;
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  #mobile-menu.open {
+    display: block;
+    max-height: 500px;
+  }
+
+  /* Navigation link styles */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+</style>
+
+<script>
+  // Mobile menu toggle functionality
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+  if (mobileMenuButton && mobileMenu && menuIcon && closeIcon) {
+    // Toggle mobile menu
+    mobileMenuButton.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.contains('open');
+
+      if (isOpen) {
+        // Close menu
+        mobileMenu.classList.remove('open');
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+      } else {
+        // Open menu
+        mobileMenu.classList.add('open');
+        menuIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    // Close mobile menu when a navigation link is clicked
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement;
+      if (
+        mobileMenu.classList.contains('open') &&
+        !mobileMenu.contains(target) &&
+        !mobileMenuButton.contains(target)
+      ) {
+        mobileMenu.classList.remove('open');
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // Smooth scroll for anchor links (for browsers that don't support CSS scroll-behavior)
+  document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e: Event) {
+      const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
+      if (href && href !== '#') {
+        e.preventDefault();
+        const targetId = href.substring(1);
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }
+    });
+  });
+</script>
