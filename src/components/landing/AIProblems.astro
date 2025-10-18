@@ -1,70 +1,58 @@
 ---
 // AI Problems section with 4-card grid
+import { cms, extractCollection, type SectionHeading, type Problem } from '../../lib/cms';
+
+// Fetch section heading and problems from CMS
+const allHeadings = extractCollection<SectionHeading>(await cms.collection('section-headings').all());
+const sectionHeading = allHeadings.find(h => h.slug === 'ai-problems');
+const problems = extractCollection<Problem>(await cms.collection('problems').all()).sort((a, b) => a.sort_order - b.sort_order);
 ---
 
-<section class="py-20 bg-gradient-to-b from-[#0A0A0B] to-[#0F0F10]">
+<section id="ai-problems" data-cms-collections="section-headings,problems" class="py-20 bg-gradient-to-b from-[#0A0A0B] to-[#0F0F10]">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
       <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">
-        Why AI-generated content needs guardrails
+        {sectionHeading?.title}
       </h2>
       <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-        Without proper content management, AI agents can create serious risks for your business
+        {sectionHeading?.description}
       </p>
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-      <!-- Hallucinations -->
-      <div class="bg-[#1A1A1C] rounded-xl border border-gray-800 p-6 hover:border-red-500/50 transition-colors group">
-        <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center mb-4 group-hover:bg-red-500/20 transition-colors">
-          <svg class="w-6 h-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold text-white mb-2">Hallucinations</h3>
-        <p class="text-gray-400 text-sm">
-          AI invents facts, statistics, and citations that don't exist. One false claim can destroy customer trust and trigger legal liability.
-        </p>
-      </div>
+      {problems.map((problem, index) => {
+        // Define colors for each problem card
+        const colors = [
+          { border: 'red-500', bg: 'red-500', text: 'red-400' },
+          { border: 'yellow-500', bg: 'yellow-500', text: 'yellow-400' },
+          { border: 'orange-500', bg: 'orange-500', text: 'orange-400' },
+          { border: 'purple-500', bg: 'purple-500', text: 'purple-400' }
+        ];
+        const color = colors[index % colors.length];
 
-      <!-- Content Drift -->
-      <div class="bg-[#1A1A1C] rounded-xl border border-gray-800 p-6 hover:border-yellow-500/50 transition-colors group">
-        <div class="w-12 h-12 rounded-lg bg-yellow-500/10 flex items-center justify-center mb-4 group-hover:bg-yellow-500/20 transition-colors">
-          <svg class="w-6 h-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold text-white mb-2">Content Drift</h3>
-        <p class="text-gray-400 text-sm">
-          Each AI generation subtly changes messaging. Over time, your brand voice becomes unrecognizable and inconsistent across channels.
-        </p>
-      </div>
+        // Define icons for each problem (you could also add icon type to CMS)
+        const icons = [
+          'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z',
+          'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6',
+          'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+          'M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01'
+        ];
+        const iconPath = icons[index % icons.length];
 
-      <!-- Compliance Risk -->
-      <div class="bg-[#1A1A1C] rounded-xl border border-gray-800 p-6 hover:border-orange-500/50 transition-colors group">
-        <div class="w-12 h-12 rounded-lg bg-orange-500/10 flex items-center justify-center mb-4 group-hover:bg-orange-500/20 transition-colors">
-          <svg class="w-6 h-6 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold text-white mb-2">Compliance Risk</h3>
-        <p class="text-gray-400 text-sm">
-          AI-generated content may violate GDPR, accessibility standards, or industry regulations. The fines are massive, the lawsuits are real.
-        </p>
-      </div>
-
-      <!-- Brand Inconsistency -->
-      <div class="bg-[#1A1A1C] rounded-xl border border-gray-800 p-6 hover:border-purple-500/50 transition-colors group">
-        <div class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4 group-hover:bg-purple-500/20 transition-colors">
-          <svg class="w-6 h-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold text-white mb-2">Brand Inconsistency</h3>
-        <p class="text-gray-400 text-sm">
-          Different AI tools produce different tones, styles, and messaging. Your brand appears fragmented and unprofessional to customers.
-        </p>
-      </div>
+        return (
+          <div class={`bg-[#1A1A1C] rounded-xl border border-gray-800 p-6 hover:border-${color.border}/50 transition-colors group`}>
+            <div class={`w-12 h-12 rounded-lg bg-${color.bg}/10 flex items-center justify-center mb-4 group-hover:bg-${color.bg}/20 transition-colors`}>
+              <svg class={`w-6 h-6 text-${color.text}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={iconPath} />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">{problem.title}</h3>
+            <p class="text-gray-400 text-sm">
+              {problem.description}
+            </p>
+          </div>
+        );
+      })}
     </div>
 
     <!-- Solution -->

@@ -70,6 +70,75 @@ Content is fetched from Vibe CMS using the TypeScript SDK. Configuration typical
 - Project ID
 - API key for authentication
 
+### SDK Response Structure
+
+**IMPORTANT**: The Vibe CMS SDK returns data in a nested structure that requires careful extraction.
+
+#### Singleton Queries (`.first()`)
+When fetching a single content item, the SDK returns:
+```typescript
+{
+  data: {
+    id: "content-item-id",
+    data: {
+      field1: "value1",
+      field2: "value2",
+      // ... your actual content fields
+    },
+    locale: "en-US"
+  },
+  assetManager: { ... }
+}
+```
+
+**To access content fields**, you must navigate to `result.data.data.field_name`.
+
+#### Collection Queries (`.all()`, `.many()`)
+Returns an array of items, each with the same structure:
+```typescript
+[
+  {
+    id: "item-id",
+    data: {
+      field1: "value1",
+      // ... content fields
+    },
+    locale: "en-US"
+  },
+  // ... more items
+]
+```
+
+### Helper Functions
+
+The project includes helper functions in `src/lib/cms.ts` to extract data correctly:
+
+- **`extractData<T>(result)`**: Extracts data from singleton queries
+  - Handles nested `result.data.data` structure
+  - Also supports alternative response formats (translations array)
+
+- **`extractCollection<T>(results)`**: Extracts data from collection queries
+  - Converts to array if needed
+  - Extracts `data` property from each item
+
+### Usage Example
+
+```typescript
+import { cms, extractData, extractCollection, type LandingHero } from '../../lib/cms';
+
+// Singleton query
+const heroResult = await cms.collection('landing-hero').first();
+const heroData = extractData<LandingHero>(heroResult);
+// Now heroData contains { field1, field2, ... } directly
+
+// Collection query
+const allItemsRaw = await cms.collection('items').all();
+const allItems = extractCollection<Item>(allItemsRaw);
+// Now allItems is Array<{ field1, field2, ... }>
+```
+
+**Always use the helper functions** to ensure correct data extraction across different SDK response formats.
+
 ### Content Workflow
 1. Content editors manage content in Vibe CMS admin interface
 2. During build, Astro pages fetch content via SDK in frontmatter

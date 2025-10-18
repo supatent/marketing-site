@@ -1,8 +1,12 @@
 ---
 // Footer component for Vibe CMS marketing website
+import { cms, extractData, type SiteBrand } from '../../lib/cms';
+
+// Fetch site brand from CMS
+const siteBrand = extractData<SiteBrand>(await cms.collection('site-brand').first());
 ---
 
-<footer class="bg-[#0A0A0B] text-white border-t border-gray-800">
+<footer id="footer" data-cms-collections="site-brand" class="bg-[#0A0A0B] text-white border-t border-gray-800">
   <div class="max-w-7xl mx-auto px-8">
     <!-- Main Footer Content -->
     <div class="footer-content">
@@ -23,10 +27,10 @@
               d="M13 10V3L4 14h7v7l9-11h-7z"
             />
           </svg>
-          <span class="brand-name">Vibe CMS</span>
+          <span class="brand-name">{siteBrand.name}</span>
         </div>
         <p class="brand-description">
-          AI-powered content management at terminal velocity
+          {siteBrand.tagline}
         </p>
       </div>
 
@@ -86,7 +90,7 @@
     <!-- Footer Bottom -->
     <div class="footer-bottom">
       <div class="footer-bottom-left">
-        <p class="copyright">© 2024 Vibe CMS. All rights reserved.</p>
+        <p class="copyright">© 2024 {siteBrand.name}. All rights reserved.</p>
         <div class="footer-status">
           <span class="status-indicator"></span>
           <span class="status-text">All systems operational</span>

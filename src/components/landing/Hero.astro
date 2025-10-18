@@ -1,48 +1,63 @@
 ---
 // Hero section with rotating headline and chat interface
+import { cms, parseRotatingWords, extractData, extractCollection, type LandingHero, type Stat } from '../../lib/cms';
+
+// Fetch hero content from CMS
+const heroResult = await cms.collection('landing-hero').first();
+const heroData = extractData<LandingHero>(heroResult);
+const allStatsRaw = await cms.collection('stats').all();
+const allStats = extractCollection<Stat>(allStatsRaw);
+
+// Filter stats by category
+const heroStats = allStats.filter(stat => stat.category === 'hero').sort((a, b) => a.sort_order - b.sort_order);
+
+// Parse rotating words from JSON string
+const rotatingWords = parseRotatingWords(heroData.rotating_words);
+const rotatingColors = ['#00D4FF', '#FF6B35', '#4ADE80', '#A78BFA', '#F59E0B'];
 ---
 
-<section class="relative overflow-hidden bg-[#0A0A0B] pt-20 pb-32">
+<section id="hero" data-cms-collections="landing-hero,stats" class="relative overflow-hidden bg-[#0A0A0B] pt-20 pb-32">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="grid lg:grid-cols-2 gap-12 items-center">
       <!-- Left: Headline and CTA -->
       <div class="space-y-8">
         <div class="space-y-4">
           <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
-            <span class="text-white">Built for</span>
+            <span class="text-white">{heroData.headline_prefix}</span>
             <br />
-            <span id="rotating-text" class="inline-block min-h-[1.2em]" data-words='["AI Agents", "Claude", "ChatGPT", "Gemini", "Your AI"]' data-colors='["#00D4FF", "#FF6B35", "#4ADE80", "#A78BFA", "#F59E0B"]'>
-              <span class="text-[#00D4FF]">AI Agents</span>
+            <span id="rotating-text" class="typing-container inline-block min-h-[1.2em]">
+              {rotatingWords.map((word, index) => (
+                <span
+                  class={`word word-${index + 1}`}
+                  style={`--char-count: ${word.length}; --color: ${rotatingColors[index]}; --word-index: ${index};`}
+                >
+                  {word}
+                </span>
+              ))}
             </span>
           </h1>
           <p class="text-xl sm:text-2xl text-gray-400 max-w-xl">
-            Connect AI agents to your content management system. Keep your brand consistent, compliant, and accurate.
+            {heroData.description}
           </p>
         </div>
 
         <div class="flex flex-wrap gap-4">
           <a href="#pricing" class="inline-flex items-center px-8 py-4 bg-[#00D4FF] text-black font-semibold rounded-lg hover:bg-[#00B8E0] transition-colors">
-            Get Started Free
+            {heroData.primary_cta_text}
           </a>
           <a href="#features" class="inline-flex items-center px-8 py-4 border border-gray-700 text-white font-semibold rounded-lg hover:border-gray-600 transition-colors">
-            See How It Works
+            {heroData.secondary_cta_text}
           </a>
         </div>
 
         <!-- Stats or trust indicators -->
         <div class="flex flex-wrap gap-8 pt-4">
-          <div>
-            <div class="text-3xl font-bold text-white">99.9%</div>
-            <div class="text-sm text-gray-500">Uptime SLA</div>
-          </div>
-          <div>
-            <div class="text-3xl font-bold text-white">&lt;50ms</div>
-            <div class="text-sm text-gray-500">API Response</div>
-          </div>
-          <div>
-            <div class="text-3xl font-bold text-white">SOC 2</div>
-            <div class="text-sm text-gray-500">Certified</div>
-          </div>
+          {heroStats.map(stat => (
+            <div>
+              <div class="text-3xl font-bold text-white">{stat.value}</div>
+              <div class="text-sm text-gray-500">{stat.label}</div>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -154,49 +169,75 @@
     animation: progress 3s ease-in-out infinite;
   }
 
-  #rotating-text {
+  /* Terminal typing animation */
+  .typing-container {
     position: relative;
+    display: inline-block;
+  }
+
+  .typing-container .word {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--color);
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 0.15em solid var(--color);
+    opacity: 0;
+    width: 0;
+    animation:
+      typing 17.5s steps(var(--char-count)) infinite,
+      cursor-blink 0.75s step-end infinite;
+  }
+
+  /* Stagger each word's start time */
+  .typing-container .word-1 {
+    animation-delay: 0s, 0s;
+  }
+
+  .typing-container .word-2 {
+    animation-delay: 3.5s, 3.5s;
+  }
+
+  .typing-container .word-3 {
+    animation-delay: 7s, 7s;
+  }
+
+  .typing-container .word-4 {
+    animation-delay: 10.5s, 10.5s;
+  }
+
+  .typing-container .word-5 {
+    animation-delay: 14s, 14s;
+  }
+
+  /* Typing effect with hold and backspace */
+  @keyframes typing {
+    /* Type in: 0-1s (0-5.71%) */
+    0% { opacity: 1; width: 0; }
+    5.71% { opacity: 1; width: calc(var(--char-count) * 1ch); }
+
+    /* Hold: 1-2.5s (5.71-14.29%) */
+    14.29% { opacity: 1; width: calc(var(--char-count) * 1ch); }
+
+    /* Backspace: 2.5-3.2s (14.29-18.29%) */
+    18.29% { opacity: 1; width: 0; }
+
+    /* Gap: 3.2-3.5s (18.29-20%) */
+    20% { opacity: 0; width: 0; }
+
+    /* Stay hidden until next cycle */
+    100% { opacity: 0; width: 0; }
+  }
+
+  /* Cursor blink */
+  @keyframes cursor-blink {
+    0%, 50% { border-color: var(--color); }
+    51%, 100% { border-color: transparent; }
   }
 </style>
 
 <script>
-  // Rotating text effect
-  const rotatingText = document.getElementById('rotating-text');
-  if (rotatingText) {
-    const words = JSON.parse(rotatingText.getAttribute('data-words') || '[]');
-    const colors = JSON.parse(rotatingText.getAttribute('data-colors') || '[]');
-    let currentIndex = 0;
-
-    function rotateText() {
-      if (!rotatingText) return;
-      currentIndex = (currentIndex + 1) % words.length;
-      const span = rotatingText.querySelector('span');
-      if (span) {
-        // Fade out
-        span.style.opacity = '0';
-        span.style.transform = 'translateY(-10px)';
-
-        setTimeout(() => {
-          span.textContent = words[currentIndex];
-          span.style.color = colors[currentIndex];
-          // Fade in
-          span.style.opacity = '1';
-          span.style.transform = 'translateY(0)';
-        }, 300);
-      }
-    }
-
-    // Style for smooth transitions
-    const span = rotatingText.querySelector('span');
-    if (span) {
-      span.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-      span.style.display = 'inline-block';
-    }
-
-    // Rotate every 3 seconds
-    setInterval(rotateText, 3000);
-  }
-
   // Scenario counter
   const scenarioCounter = document.getElementById('scenario-counter');
   if (scenarioCounter) {
