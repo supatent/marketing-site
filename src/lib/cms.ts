@@ -12,6 +12,17 @@ export const cms = createVibeCMS({
 });
 
 /**
+ * Vibe CMS client for documentation content
+ * Separate project for end-user documentation
+ */
+export const docsCms = createVibeCMS({
+  projectId: '6c423480-9097-4084-bafe-0ecac9ee581a',
+  apiKey: 'sk_LLA3AOtJIg0B14EoijrfnZExv5Wkro6wEDZKY5RfQYU',
+  baseUrl: 'https://vibe-cms-app-prod-qoovy.ondigitalocean.app',
+  locale: 'en-US',
+});
+
+/**
  * TypeScript interfaces for CMS content types
  */
 
@@ -99,6 +110,16 @@ export interface PricingPlan {
   description?: string;
   features: string; // markdown
   cta_text: string;
+  sort_order: number;
+}
+
+// Documentation content types
+export interface DocPage {
+  title: string;
+  slug: string;
+  content: string; // markdown
+  description?: string;
+  category?: string;
   sort_order: number;
 }
 
