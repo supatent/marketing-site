@@ -1,0 +1,156 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import { docsCms, extractCollection, type DocPage } from '../../../lib/cms';
+
+// Fetch API Reference docs (category: Reference or API)
+let apiDocs: DocPage[] = [];
+try {
+  const result = await docsCms.collection('documentation-pages').all();
+  const allDocs = extractCollection<DocPage>(result);
+
+  // Filter for API/Reference category
+  apiDocs = allDocs
+    .filter(doc => doc.category === 'Reference' || doc.category === 'API')
+    .sort((a, b) => {
+      const orderA = (a as any).order || a.sort_order || 0;
+      const orderB = (b as any).order || b.sort_order || 0;
+      return orderA - orderB;
+    });
+} catch (error) {
+  console.error('Error fetching API docs:', error);
+}
+---
+
+<DocsLayout title="API Reference" activeTab="api-reference">
+  <h1>API Reference</h1>
+  <p class="intro">Technical reference documentation for Vibe CMS APIs, SDK, and MCP tools.</p>
+
+  {apiDocs.length === 0 ? (
+    <div class="empty-state">
+      <h2>Coming Soon</h2>
+      <p>API Reference documentation is currently being prepared.</p>
+      <p class="note">In the meantime, check out the <a href="/docs">Tutorial documentation</a> for comprehensive guides on using Vibe CMS.</p>
+    </div>
+  ) : (
+    <div class="docs-overview">
+      <div class="category-section">
+        <h2>Available References</h2>
+        <div class="docs-grid">
+          {apiDocs.map(doc => (
+            <a href={`/docs/${doc.slug}`} class="doc-card">
+              <h3>{doc.title}</h3>
+              {doc.description && <p>{doc.description}</p>}
+              <span class="arrow">→</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  )}
+</DocsLayout>
+
+<style>
+  .intro {
+    font-size: 1.125rem;
+    color: #a3a3a3;
+    margin-bottom: 3rem;
+  }
+
+  .empty-state {
+    padding: 3rem;
+    background: #2a2a2a;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .empty-state h2 {
+    color: #e5e5e5;
+    margin-bottom: 1rem;
+  }
+
+  .empty-state p {
+    color: #a3a3a3;
+    margin-bottom: 0.5rem;
+  }
+
+  .empty-state .note {
+    color: #737373;
+    font-size: 0.875rem;
+  }
+
+  .empty-state a {
+    color: #00D4FF;
+    text-decoration: none;
+  }
+
+  .empty-state a:hover {
+    text-decoration: underline;
+  }
+
+  .docs-overview {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .category-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #e5e5e5;
+    margin-bottom: 1.5rem;
+  }
+
+  .docs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+
+  .doc-card {
+    display: block;
+    padding: 1.5rem;
+    background: #2a2a2a;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  .doc-card:hover {
+    border-color: #00D4FF;
+    transform: translateY(-2px);
+  }
+
+  .doc-card h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #e5e5e5;
+    margin-top: 0;
+  }
+
+  .doc-card p {
+    color: #737373;
+    line-height: 1.6;
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  .doc-card .arrow {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    color: #00D4FF;
+    font-size: 1.25rem;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: all 0.2s;
+  }
+
+  .doc-card:hover .arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>

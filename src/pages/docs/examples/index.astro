@@ -1,0 +1,228 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import { docsCms, extractCollection, type DocPage } from '../../../lib/cms';
+
+// Fetch Examples docs (category: Example or Recipe)
+let exampleDocs: DocPage[] = [];
+try {
+  const result = await docsCms.collection('documentation-pages').all();
+  const allDocs = extractCollection<DocPage>(result);
+
+  // Filter for Example/Recipe category
+  exampleDocs = allDocs
+    .filter(doc => doc.category === 'Example' || doc.category === 'Recipe')
+    .sort((a, b) => {
+      const orderA = (a as any).order || a.sort_order || 0;
+      const orderB = (b as any).order || b.sort_order || 0;
+      return orderA - orderB;
+    });
+} catch (error) {
+  console.error('Error fetching example docs:', error);
+}
+---
+
+<DocsLayout title="Examples" activeTab="examples">
+  <h1>Code Examples</h1>
+  <p class="intro">Real-world code examples, integration guides, and recipes for building with Vibe CMS.</p>
+
+  {exampleDocs.length === 0 ? (
+    <div class="empty-state">
+      <h2>Coming Soon</h2>
+      <p>Code examples and recipes are currently being prepared.</p>
+      <p class="note">In the meantime, the <a href="/docs">Tutorial documentation</a> contains many code examples throughout the chapters.</p>
+
+      <div class="quick-examples">
+        <h3>Quick Snippets</h3>
+        <div class="example">
+          <h4>Fetch Content with SDK</h4>
+          <pre><code>import &#123; cms &#125; from './lib/cms';
+
+// Fetch all blog posts
+const posts = await cms
+  .collection('blog-posts')
+  .all();
+
+// Fetch single post by slug
+const post = await cms
+  .collection('blog-posts')
+  .slug('my-first-post');</code></pre>
+        </div>
+
+        <div class="example">
+          <h4>Using in Astro</h4>
+          <pre><code>---
+import &#123; cms, extractCollection &#125; from '../lib/cms';
+
+const result = await cms.collection('pages').all();
+const pages = extractCollection(result);
+---
+
+&#123;pages.map(page => (
+  &lt;a href=`/$&#123;page.slug&#125;`&gt;
+    &#123;page.title&#125;
+  &lt;/a&gt;
+))&#125;</code></pre>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div class="docs-overview">
+      <div class="category-section">
+        <h2>Available Examples</h2>
+        <div class="docs-grid">
+          {exampleDocs.map(doc => (
+            <a href={`/docs/${doc.slug}`} class="doc-card">
+              <h3>{doc.title}</h3>
+              {doc.description && <p>{doc.description}</p>}
+              <span class="arrow">→</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  )}
+</DocsLayout>
+
+<style>
+  .intro {
+    font-size: 1.125rem;
+    color: #a3a3a3;
+    margin-bottom: 3rem;
+  }
+
+  .empty-state {
+    padding: 3rem;
+    background: #2a2a2a;
+    border: 1px solid #333333;
+    border-radius: 8px;
+  }
+
+  .empty-state h2 {
+    color: #e5e5e5;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .empty-state > p {
+    color: #a3a3a3;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .empty-state .note {
+    color: #737373;
+    font-size: 0.875rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .empty-state a {
+    color: #00D4FF;
+    text-decoration: none;
+  }
+
+  .empty-state a:hover {
+    text-decoration: underline;
+  }
+
+  .quick-examples {
+    margin-top: 2rem;
+  }
+
+  .quick-examples h3 {
+    color: #e5e5e5;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .example {
+    margin-bottom: 2rem;
+  }
+
+  .example h4 {
+    color: #e5e5e5;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .example pre {
+    background: #1a1a1a;
+    border: 1px solid #333333;
+    border-radius: 6px;
+    padding: 1rem;
+    overflow-x: auto;
+  }
+
+  .example code {
+    color: #e5e5e5;
+    font-family: 'Courier New', monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .docs-overview {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .category-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #e5e5e5;
+    margin-bottom: 1.5rem;
+  }
+
+  .docs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+
+  .doc-card {
+    display: block;
+    padding: 1.5rem;
+    background: #2a2a2a;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  .doc-card:hover {
+    border-color: #00D4FF;
+    transform: translateY(-2px);
+  }
+
+  .doc-card h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #e5e5e5;
+    margin-top: 0;
+  }
+
+  .doc-card p {
+    color: #737373;
+    line-height: 1.6;
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  .doc-card .arrow {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    color: #00D4FF;
+    font-size: 1.25rem;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: all 0.2s;
+  }
+
+  .doc-card:hover .arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>

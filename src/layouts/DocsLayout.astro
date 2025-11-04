@@ -5,9 +5,10 @@ import { docsCms, extractCollection, type DocPage } from '../lib/cms';
 interface Props {
   title: string;
   currentSlug?: string;
+  activeTab?: string;
 }
 
-const { title, currentSlug } = Astro.props;
+const { title, currentSlug, activeTab = 'documentation' } = Astro.props;
 
 // Fetch all docs for sidebar navigation
 let allDocs: DocPage[] = [];
@@ -26,8 +27,45 @@ try {
   console.error('Error fetching docs for sidebar:', error);
 }
 
-// Group docs by category
-const docsByCategory = allDocs.reduce((acc, doc) => {
+// Define tab configuration with category mappings
+const tabs = [
+  {
+    name: 'Documentation',
+    slug: 'documentation',
+    path: '/docs',
+    categories: ['Tutorial', 'Guide']
+  },
+  {
+    name: 'API Reference',
+    slug: 'api-reference',
+    path: '/docs/api',
+    categories: ['Reference', 'API']
+  },
+  {
+    name: 'Examples',
+    slug: 'examples',
+    path: '/docs/examples',
+    categories: ['Example', 'Recipe']
+  },
+  {
+    name: 'FAQs',
+    slug: 'faqs',
+    path: '/docs/faqs',
+    categories: ['FAQ', 'Troubleshooting', 'Support']
+  },
+];
+
+// Get active tab configuration
+const currentTab = tabs.find(tab => tab.slug === activeTab) || tabs[0];
+
+// Filter docs by active tab's categories
+const filteredDocs = allDocs.filter(doc => {
+  const category = doc.category || 'General';
+  return currentTab.categories.includes(category);
+});
+
+// Group filtered docs by category
+const docsByCategory = filteredDocs.reduce((acc, doc) => {
   const category = doc.category || 'General';
   if (!acc[category]) {
     acc[category] = [];
@@ -37,14 +75,6 @@ const docsByCategory = allDocs.reduce((acc, doc) => {
 }, {} as Record<string, DocPage[]>);
 
 const categories = Object.keys(docsByCategory);
-
-// Top-level tabs (can be customized based on your needs)
-const tabs = [
-  { name: 'Documentation', slug: 'documentation', active: true },
-  { name: 'API Reference', slug: 'api-reference', active: false },
-  { name: 'Examples', slug: 'examples', active: false },
-  { name: 'FAQs', slug: 'faqs', active: false },
-];
 ---
 
 <BaseLayout title={`${title} - Vibe CMS Docs`}>
@@ -60,8 +90,8 @@ const tabs = [
         <nav class="tabs">
           {tabs.map(tab => (
             <a
-              href={tab.slug === 'documentation' ? '/docs' : `/${tab.slug}`}
-              class={`tab ${tab.active ? 'active' : ''}`}
+              href={tab.path}
+              class={`tab ${tab.slug === activeTab ? 'active' : ''}`}
             >
               {tab.name}
             </a>
