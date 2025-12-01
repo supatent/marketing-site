@@ -1,0 +1,121 @@
+---
+// CTA V2 component - Simple, focused call to action
+---
+
+<section class="cta-section">
+  <div class="cta-bg"></div>
+  <div class="cta-container">
+    <div class="cta-content">
+      <h2 class="cta-title">Ready to ship with confidence?</h2>
+      <p class="cta-description">
+        Join the teams who trust SUPATENT to manage their content safely at scale.
+      </p>
+      <div class="cta-buttons">
+        <a href="#pricing" class="btn btn-primary">Start building for free &rarr;</a>
+        <a href="#" class="btn btn-secondary">Talk to us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    padding: 6rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-base);
+  }
+
+  .cta-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(ellipse 50% 50% at 50% 100%, var(--hero-glow-1, color-mix(in srgb, var(--accent-primary) 10%, transparent)), transparent),
+      radial-gradient(ellipse 40% 40% at 20% 80%, var(--hero-glow-3, color-mix(in srgb, var(--accent-tertiary, #9B8DFF) 8%, transparent)), transparent);
+    pointer-events: none;
+    transition: background 0.4s ease;
+  }
+
+  .cta-container {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .cta-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: 0.625rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--accent-primary);
+    color: var(--bg-base);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow, 0 0 60px color-mix(in srgb, var(--accent-primary) 20%, transparent));
+  }
+
+  .btn-secondary {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-light);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+  }
+
+  @media (max-width: 768px) {
+    .cta-title {
+      font-size: 1.75rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn {
+      width: 100%;
+      max-width: 280px;
+      justify-content: center;
+    }
+  }
+</style>

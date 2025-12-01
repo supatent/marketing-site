@@ -1,22 +1,24 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/landing/Hero.astro';
-import SDKInstallation from '../components/landing/SDKInstallation.astro';
-import AIProblems from '../components/landing/AIProblems.astro';
-import Features from '../components/landing/Features.astro';
+// V2 Landing Page - Community-focused design
+// Based on proposals-unified.html with community gallery, value props, and rotating hero
+import LandingLayout from '../layouts/LandingLayout.astro';
+import LandingNav from '../components/LandingNav.astro';
+import HeroV2 from '../components/landing/v2/HeroV2.astro';
+import CommunityGallery from '../components/landing/v2/CommunityGallery.astro';
 import Integrations from '../components/landing/Integrations.astro';
-import Pricing from '../components/landing/Pricing.astro';
-import CTA from '../components/landing/CTA.astro';
-import Footer from '../components/landing/Footer.astro';
+import SDKCards from '../components/landing/v2/SDKCards.astro';
+import ValueProps from '../components/landing/v2/ValueProps.astro';
+import CTAV2 from '../components/landing/v2/CTAV2.astro';
+import FooterV2 from '../components/landing/v2/FooterV2.astro';
 ---
 
-<Layout>
-	<Hero />
-	<SDKInstallation />
-	<AIProblems />
-	<Features />
-	<Integrations />
-	<Pricing />
-	<CTA />
-	<Footer />
-</Layout>
+<LandingLayout>
+  <LandingNav />
+  <HeroV2 />
+  <CommunityGallery />
+  <Integrations />
+  <SDKCards />
+  <ValueProps />
+  <CTAV2 />
+  <FooterV2 />
+</LandingLayout>

@@ -1,0 +1,141 @@
+---
+// Value Props component - "Why teams choose SUPATENT"
+// Highlights the three core value propositions
+
+interface ValueProp {
+  icon: string;
+  title: string;
+  description: string;
+  color: 'primary' | 'secondary' | 'tertiary';
+}
+
+const valueProps: ValueProp[] = [
+  {
+    icon: "↩️",
+    title: "Instant Rollback",
+    description: "Something wrong? One click to restore any previous version. No panic, no downtime.",
+    color: "primary"
+  },
+  {
+    icon: "🌍",
+    title: "One-Click Translation",
+    description: "Reach global audiences instantly. Translate your entire content library in seconds.",
+    color: "secondary"
+  },
+  {
+    icon: "🛡️",
+    title: "AI Safety Layer",
+    description: "Every piece of AI-generated content verified for accuracy, brand voice, and compliance.",
+    color: "tertiary"
+  }
+];
+---
+
+<section class="value-props-section">
+  <div class="value-props-container">
+    <div class="value-header">
+      <h2 class="value-title">Why teams choose SUPATENT</h2>
+      <p class="value-subtitle">The content layer that gives you confidence to ship</p>
+    </div>
+
+    <div class="value-grid">
+      {valueProps.map((prop) => (
+        <div class="value-item">
+          <div class={`value-icon ${prop.color}`}>
+            {prop.icon}
+          </div>
+          <h4 class="value-item-title">{prop.title}</h4>
+          <p class="value-item-description">{prop.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .value-props-section {
+    padding: 6rem 0;
+    background: var(--bg-card);
+    transition: background 0.3s ease;
+  }
+
+  .value-props-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .value-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .value-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .value-subtitle {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+  }
+
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+
+  .value-item {
+    text-align: center;
+  }
+
+  .value-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: 0 auto 1.25rem;
+    border-radius: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+  }
+
+  .value-icon.primary {
+    background: color-mix(in srgb, var(--accent-primary) 15%, transparent);
+  }
+
+  .value-icon.secondary {
+    background: color-mix(in srgb, var(--accent-secondary, #8EEDC7) 15%, transparent);
+  }
+
+  .value-icon.tertiary {
+    background: color-mix(in srgb, var(--accent-tertiary, #9B8DFF) 15%, transparent);
+  }
+
+  .value-item-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .value-item-description {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .value-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .value-title {
+      font-size: 1.5rem;
+    }
+  }
+</style>

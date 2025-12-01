@@ -28,33 +28,33 @@ const complianceUseCases = allUseCases.filter(uc => uc.category === 'compliance'
 const contentTypeUseCases = allUseCases.filter(uc => uc.category === 'content-type').sort((a, b) => a.sort_order - b.sort_order);
 ---
 
-<section id="integrations" data-cms-collections="section-headings,integrations,use-cases" class="py-20 bg-[#0A0A0B]">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">
+<section id="integrations" data-cms-collections="section-headings,integrations,use-cases" class="integrations-section">
+  <div class="integrations-container">
+    <div class="integrations-header">
+      <h2 class="integrations-title">
         {integrationsHeading?.title}
       </h2>
-      <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+      <p class="integrations-subtitle">
         {integrationsHeading?.description}
       </p>
     </div>
 
     <!-- Platform Logos - Scrolling Tags Row 1 -->
-    <div class="relative overflow-hidden mb-4">
-      <div class="scrolling-tags flex gap-4 whitespace-nowrap">
+    <div class="scroll-wrapper">
+      <div class="scrolling-tags">
         {integrations.slice(0, Math.ceil(integrations.length / 2)).map(integration => (
-          <span class="inline-flex items-center gap-2 px-6 py-3 text-gray-300">
+          <span class="integration-tag">
             {integration.logo && (
-              <img src={integration.logo.url} alt={integration.logo.alt_text || integration.name} class="h-6 w-auto integration-icon" />
+              <img src={integration.logo.url} alt={integration.logo.alt_text || integration.name} class="integration-icon" />
             )}
             <span>{integration.name}</span>
           </span>
         ))}
         <!-- Duplicated for seamless loop -->
         {integrations.slice(0, Math.ceil(integrations.length / 2)).map(integration => (
-          <span class="inline-flex items-center gap-2 px-6 py-3 text-gray-300">
+          <span class="integration-tag">
             {integration.logo && (
-              <img src={integration.logo.url} alt={integration.logo.alt_text || integration.name} class="h-6 w-auto integration-icon" />
+              <img src={integration.logo.url} alt={integration.logo.alt_text || integration.name} class="integration-icon" />
             )}
             <span>{integration.name}</span>
           </span>
@@ -63,21 +63,21 @@ const contentTypeUseCases = allUseCases.filter(uc => uc.category === 'content-ty
     </div>
 
     <!-- Platform Logos - Scrolling Tags Row 2 (reverse direction) -->
-    <div class="relative overflow-hidden mb-20">
-      <div class="scrolling-tags-reverse flex gap-4 whitespace-nowrap">
+    <div class="scroll-wrapper">
+      <div class="scrolling-tags-reverse">
         {integrations.slice(Math.ceil(integrations.length / 2)).map(integration => (
-          <span class="inline-flex items-center gap-2 px-6 py-3 text-gray-300">
+          <span class="integration-tag">
             {integration.logo && (
-              <img src={integration.logo.url} alt={integration.logo.alt_text || integration.name} class="h-6 w-auto integration-icon" />
+              <img src={integration.logo.url} alt={integration.logo.alt_text || integration.name} class="integration-icon" />
             )}
             <span>{integration.name}</span>
           </span>
         ))}
         <!-- Duplicated for seamless loop -->
         {integrations.slice(Math.ceil(integrations.length / 2)).map(integration => (
-          <span class="inline-flex items-center gap-2 px-6 py-3 text-gray-300">
+          <span class="integration-tag">
             {integration.logo && (
-              <img src={integration.logo.url} alt={integration.logo.alt_text || integration.name} class="h-6 w-auto integration-icon" />
+              <img src={integration.logo.url} alt={integration.logo.alt_text || integration.name} class="integration-icon" />
             )}
             <span>{integration.name}</span>
           </span>
@@ -86,37 +86,37 @@ const contentTypeUseCases = allUseCases.filter(uc => uc.category === 'content-ty
     </div>
 
     <!-- What Could You Do Section -->
-    <div class="text-center mb-12">
-      <h3 class="text-3xl font-bold text-white mb-4">
+    <div class="usecases-header">
+      <h3 class="usecases-title">
         {useCasesHeading?.title}
       </h3>
-      <p class="text-lg text-gray-400">
+      <p class="usecases-subtitle">
         {useCasesHeading?.description}
       </p>
     </div>
 
     <!-- Scrolling Tags - Row 1 (Compliance) -->
-    <div class="relative overflow-hidden mb-4">
-      <div class="scrolling-tags flex gap-4 whitespace-nowrap">
+    <div class="scroll-wrapper">
+      <div class="scrolling-tags">
         {complianceUseCases.map(useCase => (
-          <span class="inline-block px-6 py-3 bg-[#1A1A1C] border border-gray-800 rounded-full text-gray-300">{useCase.name}</span>
+          <span class="usecase-tag">{useCase.name}</span>
         ))}
         <!-- Duplicated for seamless loop -->
         {complianceUseCases.map(useCase => (
-          <span class="inline-block px-6 py-3 bg-[#1A1A1C] border border-gray-800 rounded-full text-gray-300">{useCase.name}</span>
+          <span class="usecase-tag">{useCase.name}</span>
         ))}
       </div>
     </div>
 
     <!-- Scrolling Tags - Row 2 (Content Types - reverse direction) -->
-    <div class="relative overflow-hidden">
-      <div class="scrolling-tags-reverse flex gap-4 whitespace-nowrap">
+    <div class="scroll-wrapper">
+      <div class="scrolling-tags-reverse">
         {contentTypeUseCases.map(useCase => (
-          <span class="inline-block px-6 py-3 bg-[#1A1A1C] border border-gray-800 rounded-full text-gray-300">{useCase.name}</span>
+          <span class="usecase-tag">{useCase.name}</span>
         ))}
         <!-- Duplicated for seamless loop -->
         {contentTypeUseCases.map(useCase => (
-          <span class="inline-block px-6 py-3 bg-[#1A1A1C] border border-gray-800 rounded-full text-gray-300">{useCase.name}</span>
+          <span class="usecase-tag">{useCase.name}</span>
         ))}
       </div>
     </div>
@@ -124,22 +124,89 @@ const contentTypeUseCases = allUseCases.filter(uc => uc.category === 'content-ty
 </section>
 
 <style>
-  @keyframes scroll-left {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
+  .integrations-section {
+    padding: 5rem 0;
+    background: var(--bg-base);
+  }
+
+  .integrations-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .integrations-container {
+      padding: 0 1.5rem;
     }
   }
 
-  @keyframes scroll-right {
-    0% {
-      transform: translateX(-50%);
+  @media (min-width: 1024px) {
+    .integrations-container {
+      padding: 0 2rem;
     }
-    100% {
-      transform: translateX(0);
+  }
+
+  .integrations-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .integrations-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .integrations-title {
+      font-size: 3rem;
     }
+  }
+
+  .integrations-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 48rem;
+    margin: 0 auto;
+  }
+
+  /* Scroll Wrapper */
+  .scroll-wrapper {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  /* Gradient fade effect on edges */
+  .scroll-wrapper::before,
+  .scroll-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .scroll-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-base) 0%, transparent 100%);
+  }
+
+  .scroll-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-base) 0%, transparent 100%);
+  }
+
+  /* Scrolling Tags */
+  .scrolling-tags,
+  .scrolling-tags-reverse {
+    display: flex;
+    gap: 1rem;
+    white-space: nowrap;
   }
 
   .scrolling-tags {
@@ -155,8 +222,61 @@ const contentTypeUseCases = allUseCases.filter(uc => uc.category === 'content-ty
     animation-play-state: paused;
   }
 
-  /* Normalize all integration icon colors to muted gray (#9CA3AF / gray-400) */
+  @keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes scroll-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+
+  /* Integration Tags */
+  .integration-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    color: var(--text-secondary);
+  }
+
   .integration-icon {
-    filter: brightness(0) saturate(100%) invert(1) brightness(0.65);
+    height: 1.5rem;
+    width: auto;
+    filter: grayscale(100%) brightness(0.8);
+    opacity: 0.7;
+  }
+
+  [data-theme="light"] .integration-icon {
+    filter: grayscale(100%) brightness(0.5);
+  }
+
+  /* Use Cases Header */
+  .usecases-header {
+    text-align: center;
+    margin: 5rem 0 3rem;
+  }
+
+  .usecases-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .usecases-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+  }
+
+  /* Use Case Tags */
+  .usecase-tag {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 9999px;
+    color: var(--text-secondary);
   }
 </style>

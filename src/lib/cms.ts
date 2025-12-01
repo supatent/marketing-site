@@ -113,6 +113,20 @@ export interface PricingPlan {
   sort_order: number;
 }
 
+// Collection: community-projects
+export interface CommunityProject {
+  title: string;
+  description: string;
+  badge: string; // e.g., "Blog", "Documentation", "E-commerce"
+  gradient: string; // e.g., "gradient-1", "gradient-2", etc.
+  stat_1_value: string;
+  stat_1_label: string;
+  stat_2_value: string;
+  stat_2_label: string;
+  url?: string; // optional link to the project
+  sort_order: number;
+}
+
 // Documentation content types
 export interface DocPage {
   title: string;

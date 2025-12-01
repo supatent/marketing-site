@@ -16,16 +16,16 @@ const rotatingWords = parseRotatingWords(heroData.rotating_words);
 const rotatingColors = ['#00D4FF', '#FF6B35', '#4ADE80', '#A78BFA', '#F59E0B'];
 ---
 
-<section id="hero" data-cms-collections="landing-hero,stats" class="relative overflow-hidden bg-[#0A0A0B] pt-20 pb-32">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
+<section id="hero" data-cms-collections="landing-hero,stats" class="hero-section">
+  <div class="hero-container">
+    <div class="hero-grid">
       <!-- Left: Headline and CTA -->
-      <div class="space-y-8">
-        <div class="space-y-4">
-          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
-            <span class="text-white">{heroData.headline_prefix}</span>
+      <div class="hero-left">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            <span class="title-prefix">{heroData.headline_prefix}</span>
             <br />
-            <span id="rotating-text" class="typing-container inline-block min-h-[1.2em]">
+            <span id="rotating-text" class="typing-container">
               {rotatingWords.map((word, index) => (
                 <span
                   class={`word word-${index + 1}`}
@@ -36,115 +36,109 @@ const rotatingColors = ['#00D4FF', '#FF6B35', '#4ADE80', '#A78BFA', '#F59E0B'];
               ))}
             </span>
           </h1>
-          <p class="text-xl sm:text-2xl text-gray-400 max-w-xl">
+          <p class="hero-description">
             {heroData.description}
           </p>
         </div>
 
-        <div class="flex flex-wrap gap-4">
-          <a href="#pricing" class="inline-flex items-center px-8 py-4 bg-[#00D4FF] text-black font-semibold rounded-lg hover:bg-[#00B8E0] transition-colors">
+        <div class="hero-cta-buttons">
+          <a href="#pricing" class="btn-primary">
             {heroData.primary_cta_text}
           </a>
-          <a href="#features" class="inline-flex items-center px-8 py-4 border border-gray-700 text-white font-semibold rounded-lg hover:border-gray-600 transition-colors">
+          <a href="#features" class="btn-secondary">
             {heroData.secondary_cta_text}
           </a>
         </div>
 
         <!-- Stats or trust indicators -->
-        <div class="flex flex-wrap gap-8 pt-4">
+        <div class="hero-stats">
           {heroStats.map(stat => (
-            <div>
-              <div class="text-3xl font-bold text-white">{stat.value}</div>
-              <div class="text-sm text-gray-500">{stat.label}</div>
+            <div class="stat-item">
+              <div class="stat-value">{stat.value}</div>
+              <div class="stat-label">{stat.label}</div>
             </div>
           ))}
         </div>
       </div>
 
       <!-- Right: Chat Interface Demo -->
-      <div class="relative">
-        <div class="bg-[#1A1A1C] rounded-2xl border border-gray-800 overflow-hidden shadow-2xl">
+      <div class="hero-demo">
+        <div class="demo-card">
           <!-- Chat Header -->
-          <div class="bg-[#0F0F10] px-6 py-4 border-b border-gray-800 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <div class="w-3 h-3 rounded-full bg-red-500"></div>
-              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+          <div class="demo-header">
+            <div class="terminal-dots">
+              <div class="dot dot-red"></div>
+              <div class="dot dot-yellow"></div>
+              <div class="dot dot-green"></div>
             </div>
-            <div class="text-sm text-gray-500 font-mono">AI Agent Console</div>
+            <div class="demo-title">AI Agent Console</div>
           </div>
 
           <!-- Chat Messages -->
-          <div class="p-6 space-y-4 h-[400px] overflow-y-auto">
-            <div class="space-y-2">
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#00D4FF] to-[#0080FF] flex items-center justify-center flex-shrink-0">
-                  <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
+          <div class="demo-messages">
+            <div class="message">
+              <div class="message-avatar avatar-ai">
+                <svg class="avatar-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <div class="message-content">
+                <div class="message-sender">AI Agent</div>
+                <div class="message-bubble">
+                  Fetching product descriptions from SUPATENT...
                 </div>
-                <div class="flex-1">
-                  <div class="text-sm text-gray-400 mb-1">AI Agent</div>
-                  <div class="bg-[#0F0F10] rounded-lg p-4 text-gray-300">
-                    Fetching product descriptions from Vibe CMS...
+              </div>
+            </div>
+
+            <div class="message">
+              <div class="message-avatar avatar-cms">
+                <svg class="avatar-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div class="message-content">
+                <div class="message-sender">SUPATENT</div>
+                <div class="message-bubble">
+                  <div class="check-item">
+                    <span class="check-icon">✓</span>
+                    <span>Content verified</span>
+                  </div>
+                  <div class="check-item">
+                    <span class="check-icon">✓</span>
+                    <span>Brand guidelines applied</span>
+                  </div>
+                  <div class="check-item">
+                    <span class="check-icon">✓</span>
+                    <span>GDPR compliant</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div class="space-y-2">
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0">
-                  <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <div class="flex-1">
-                  <div class="text-sm text-gray-400 mb-1">Vibe CMS</div>
-                  <div class="bg-[#0F0F10] rounded-lg p-4 text-gray-300">
-                    <div class="flex items-center gap-2 mb-2">
-                      <span class="text-green-400">✓</span>
-                      <span>Content verified</span>
-                    </div>
-                    <div class="flex items-center gap-2 mb-2">
-                      <span class="text-green-400">✓</span>
-                      <span>Brand guidelines applied</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                      <span class="text-green-400">✓</span>
-                      <span>GDPR compliant</span>
-                    </div>
-                  </div>
-                </div>
+            <div class="message">
+              <div class="message-avatar avatar-ai">
+                <svg class="avatar-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
               </div>
-            </div>
-
-            <div class="space-y-2">
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#00D4FF] to-[#0080FF] flex items-center justify-center flex-shrink-0">
-                  <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <div class="flex-1">
-                  <div class="text-sm text-gray-400 mb-1">AI Agent</div>
-                  <div class="bg-[#0F0F10] rounded-lg p-4 text-gray-300 border border-[#00D4FF]/30">
-                    Generated 15 product descriptions with 100% accuracy. Ready to publish.
-                  </div>
+              <div class="message-content">
+                <div class="message-sender">AI Agent</div>
+                <div class="message-bubble message-success">
+                  Generated 15 product descriptions with 100% accuracy. Ready to publish.
                 </div>
               </div>
             </div>
           </div>
 
           <!-- Progress Indicator -->
-          <div class="px-6 py-4 bg-[#0F0F10] border-t border-gray-800">
-            <div class="flex items-center gap-2 mb-2">
-              <div class="text-xs text-gray-500">Processing</div>
-              <div class="flex-1 h-1 bg-gray-800 rounded-full overflow-hidden">
-                <div class="h-full bg-gradient-to-r from-[#00D4FF] to-[#0080FF] scenario-progress"></div>
+          <div class="demo-footer">
+            <div class="progress-header">
+              <div class="progress-label">Processing</div>
+              <div class="progress-bar">
+                <div class="progress-fill scenario-progress"></div>
               </div>
             </div>
-            <div class="flex items-center justify-between text-xs text-gray-500">
+            <div class="progress-info">
               <span>Scenario: Product Content Generation</span>
               <span id="scenario-counter">1/4</span>
             </div>
@@ -155,11 +149,358 @@ const rotatingColors = ['#00D4FF', '#FF6B35', '#4ADE80', '#A78BFA', '#F59E0B'];
   </div>
 
   <!-- Background gradient effects -->
-  <div class="absolute top-0 left-1/4 w-96 h-96 bg-[#00D4FF]/10 rounded-full blur-3xl -z-10"></div>
-  <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl -z-10"></div>
+  <div class="hero-bg-glow glow-1"></div>
+  <div class="hero-bg-glow glow-2"></div>
 </section>
 
 <style>
+  /* Hero Section */
+  .hero-section {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-base);
+    padding-top: 5rem;
+    padding-bottom: 8rem;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .hero-container {
+      padding: 0 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-container {
+      padding: 0 2rem;
+    }
+  }
+
+  .hero-grid {
+    display: grid;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text-primary);
+  }
+
+  @media (min-width: 640px) {
+    .hero-title {
+      font-size: 3.75rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-title {
+      font-size: 4.5rem;
+    }
+  }
+
+  .title-prefix {
+    color: var(--text-primary);
+  }
+
+  .hero-description {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 36rem;
+  }
+
+  @media (min-width: 640px) {
+    .hero-description {
+      font-size: 1.5rem;
+    }
+  }
+
+  /* CTA Buttons */
+  .hero-cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--gradient-brand);
+    color: white;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-large);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    border: 1px solid var(--border-light);
+    color: var(--text-primary);
+    font-weight: 600;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    background: transparent;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent-primary);
+    background: var(--bg-soft);
+  }
+
+  /* Hero Stats */
+  .hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-top: 1rem;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-value {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  /* Demo Card */
+  .hero-demo {
+    position: relative;
+  }
+
+  .demo-card {
+    background: var(--bg-card);
+    border-radius: 1rem;
+    border: 1px solid var(--border-light);
+    overflow: hidden;
+    box-shadow: var(--shadow-large);
+  }
+
+  .demo-header {
+    background: var(--bg-soft);
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .terminal-dots {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+  }
+
+  .dot-red {
+    background: #FF5F56;
+  }
+
+  .dot-yellow {
+    background: #FFBD2E;
+  }
+
+  .dot-green {
+    background: #27C93F;
+  }
+
+  .demo-title {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-family: monospace;
+  }
+
+  .demo-messages {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 400px;
+    overflow-y: auto;
+  }
+
+  .message {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .message-avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .avatar-ai {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary, #0080FF));
+  }
+
+  .avatar-cms {
+    background: linear-gradient(135deg, #A78BFA, #EC4899);
+  }
+
+  .avatar-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: white;
+  }
+
+  .message-content {
+    flex: 1;
+  }
+
+  .message-sender {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+  }
+
+  .message-bubble {
+    background: var(--bg-soft);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    color: var(--text-primary);
+  }
+
+  .message-success {
+    border: 1px solid var(--accent-primary);
+    background: color-mix(in srgb, var(--accent-primary) 10%, var(--bg-soft));
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .check-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .check-icon {
+    color: #22C55E;
+  }
+
+  /* Demo Footer */
+  .demo-footer {
+    padding: 1rem 1.5rem;
+    background: var(--bg-soft);
+    border-top: 1px solid var(--border-light);
+  }
+
+  .progress-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .progress-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .progress-bar {
+    flex: 1;
+    height: 0.25rem;
+    background: var(--border-light);
+    border-radius: 9999px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--gradient-brand);
+  }
+
+  .progress-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  /* Background Glow */
+  .hero-bg-glow {
+    position: absolute;
+    width: 24rem;
+    height: 24rem;
+    border-radius: 50%;
+    filter: blur(64px);
+    z-index: -1;
+    opacity: 0.15;
+  }
+
+  .glow-1 {
+    top: 0;
+    left: 25%;
+    background: var(--accent-primary);
+  }
+
+  .glow-2 {
+    bottom: 0;
+    right: 25%;
+    background: #A78BFA;
+  }
+
+  /* Progress Animation */
   @keyframes progress {
     0% { width: 0%; }
     100% { width: 100%; }
@@ -173,6 +514,7 @@ const rotatingColors = ['#00D4FF', '#FF6B35', '#4ADE80', '#A78BFA', '#F59E0B'];
   .typing-container {
     position: relative;
     display: inline-block;
+    min-height: 1.2em;
   }
 
   .typing-container .word {
@@ -213,20 +555,11 @@ const rotatingColors = ['#00D4FF', '#FF6B35', '#4ADE80', '#A78BFA', '#F59E0B'];
 
   /* Typing effect with hold and backspace */
   @keyframes typing {
-    /* Type in: 0-1s (0-5.71%) */
     0% { opacity: 1; width: 0; }
     5.71% { opacity: 1; width: calc(var(--char-count) * 1ch); }
-
-    /* Hold: 1-2.5s (5.71-14.29%) */
     14.29% { opacity: 1; width: calc(var(--char-count) * 1ch); }
-
-    /* Backspace: 2.5-3.2s (14.29-18.29%) */
     18.29% { opacity: 1; width: 0; }
-
-    /* Gap: 3.2-3.5s (18.29-20%) */
     20% { opacity: 0; width: 0; }
-
-    /* Stay hidden until next cycle */
     100% { opacity: 0; width: 0; }
   }
 

@@ -8,29 +8,24 @@ const sectionHeading = allHeadings.find(h => h.slug === 'ai-problems');
 const problems = extractCollection<Problem>(await cms.collection('problems').all()).sort((a, b) => a.sort_order - b.sort_order);
 ---
 
-<section id="ai-problems" data-cms-collections="section-headings,problems" class="py-20 bg-gradient-to-b from-[#0A0A0B] to-[#0F0F10]">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">
+<section id="ai-problems" data-cms-collections="section-headings,problems" class="problems-section">
+  <div class="problems-container">
+    <div class="problems-header">
+      <h2 class="problems-title">
         {sectionHeading?.title}
       </h2>
-      <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+      <p class="problems-subtitle">
         {sectionHeading?.description}
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+    <div class="problems-grid">
       {problems.map((problem, index) => {
         // Define colors for each problem card
-        const colors = [
-          { border: 'red-500', bg: 'red-500', text: 'red-400' },
-          { border: 'yellow-500', bg: 'yellow-500', text: 'yellow-400' },
-          { border: 'orange-500', bg: 'orange-500', text: 'orange-400' },
-          { border: 'purple-500', bg: 'purple-500', text: 'purple-400' }
-        ];
-        const color = colors[index % colors.length];
+        const colorClasses = ['problem-red', 'problem-yellow', 'problem-orange', 'problem-purple'];
+        const colorClass = colorClasses[index % colorClasses.length];
 
-        // Define icons for each problem (you could also add icon type to CMS)
+        // Define icons for each problem
         const icons = [
           'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z',
           'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6',
@@ -40,14 +35,14 @@ const problems = extractCollection<Problem>(await cms.collection('problems').all
         const iconPath = icons[index % icons.length];
 
         return (
-          <div class={`bg-[#1A1A1C] rounded-xl border border-gray-800 p-6 hover:border-${color.border}/50 transition-colors group`}>
-            <div class={`w-12 h-12 rounded-lg bg-${color.bg}/10 flex items-center justify-center mb-4 group-hover:bg-${color.bg}/20 transition-colors`}>
-              <svg class={`w-6 h-6 text-${color.text}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class={`problem-card ${colorClass}`}>
+            <div class="problem-icon-wrapper">
+              <svg class="problem-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={iconPath} />
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-white mb-2">{problem.title}</h3>
-            <p class="text-gray-400 text-sm">
+            <h3 class="problem-card-title">{problem.title}</h3>
+            <p class="problem-card-desc">
               {problem.description}
             </p>
           </div>
@@ -56,35 +51,35 @@ const problems = extractCollection<Problem>(await cms.collection('problems').all
     </div>
 
     <!-- Solution -->
-    <div class="bg-gradient-to-br from-[#00D4FF]/10 to-purple-500/10 rounded-2xl border border-[#00D4FF]/30 p-8 md:p-12">
-      <div class="max-w-3xl mx-auto text-center">
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#00D4FF]/20 rounded-full text-[#00D4FF] text-sm font-semibold mb-6">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <div class="solution-card">
+      <div class="solution-content">
+        <div class="solution-badge">
+          <svg class="solution-badge-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           The Solution
         </div>
-        <h3 class="text-3xl font-bold text-white mb-4">
+        <h3 class="solution-title">
           Give your AI agents a single source of truth
         </h3>
-        <p class="text-lg text-gray-300 mb-6">
-          Vibe CMS acts as a content control layer between your AI agents and your users. Every piece of content is verified, version-controlled, and compliant before it reaches production.
+        <p class="solution-desc">
+          SUPATENT acts as a content control layer between your AI agents and your users. Every piece of content is verified, version-controlled, and compliant before it reaches production.
         </p>
-        <div class="flex flex-wrap justify-center gap-4">
-          <div class="flex items-center gap-2 text-gray-300">
-            <svg class="w-5 h-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div class="solution-features">
+          <div class="solution-feature">
+            <svg class="check-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>
             <span>Human oversight</span>
           </div>
-          <div class="flex items-center gap-2 text-gray-300">
-            <svg class="w-5 h-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="solution-feature">
+            <svg class="check-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>
             <span>Instant rollback</span>
           </div>
-          <div class="flex items-center gap-2 text-gray-300">
-            <svg class="w-5 h-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="solution-feature">
+            <svg class="check-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>
             <span>Audit trail</span>
@@ -94,3 +89,229 @@ const problems = extractCollection<Problem>(await cms.collection('problems').all
     </div>
   </div>
 </section>
+
+<style>
+  .problems-section {
+    padding: 5rem 0;
+    background: linear-gradient(180deg, var(--bg-base) 0%, var(--bg-soft) 100%);
+  }
+
+  .problems-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .problems-container {
+      padding: 0 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .problems-container {
+      padding: 0 2rem;
+    }
+  }
+
+  .problems-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .problems-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .problems-title {
+      font-size: 3rem;
+    }
+  }
+
+  .problems-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 48rem;
+    margin: 0 auto;
+  }
+
+  .problems-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .problems-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .problems-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .problem-card {
+    background: var(--bg-card);
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-light);
+    padding: 1.5rem;
+    transition: all 0.2s;
+  }
+
+  .problem-card:hover {
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+  }
+
+  .problem-icon-wrapper {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    transition: background 0.2s;
+  }
+
+  .problem-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  /* Color variants */
+  .problem-red .problem-icon-wrapper {
+    background: rgba(239, 68, 68, 0.1);
+  }
+  .problem-red .problem-icon {
+    color: #EF4444;
+  }
+  .problem-red:hover .problem-icon-wrapper {
+    background: rgba(239, 68, 68, 0.2);
+  }
+
+  .problem-yellow .problem-icon-wrapper {
+    background: rgba(234, 179, 8, 0.1);
+  }
+  .problem-yellow .problem-icon {
+    color: #EAB308;
+  }
+  .problem-yellow:hover .problem-icon-wrapper {
+    background: rgba(234, 179, 8, 0.2);
+  }
+
+  .problem-orange .problem-icon-wrapper {
+    background: rgba(249, 115, 22, 0.1);
+  }
+  .problem-orange .problem-icon {
+    color: #F97316;
+  }
+  .problem-orange:hover .problem-icon-wrapper {
+    background: rgba(249, 115, 22, 0.2);
+  }
+
+  .problem-purple .problem-icon-wrapper {
+    background: rgba(168, 85, 247, 0.1);
+  }
+  .problem-purple .problem-icon {
+    color: #A855F7;
+  }
+  .problem-purple:hover .problem-icon-wrapper {
+    background: rgba(168, 85, 247, 0.2);
+  }
+
+  .problem-card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .problem-card-desc {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  /* Solution Card */
+  .solution-card {
+    background: linear-gradient(135deg,
+      color-mix(in srgb, var(--accent-primary) 10%, transparent),
+      color-mix(in srgb, #A855F7 10%, transparent)
+    );
+    border: 1px solid color-mix(in srgb, var(--accent-primary) 30%, transparent);
+    border-radius: 1rem;
+    padding: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .solution-card {
+      padding: 3rem;
+    }
+  }
+
+  .solution-content {
+    max-width: 48rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .solution-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: color-mix(in srgb, var(--accent-primary) 20%, transparent);
+    border-radius: 9999px;
+    color: var(--accent-primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  .solution-badge-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .solution-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .solution-desc {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+
+  .solution-features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .solution-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+  }
+
+  .check-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #22C55E;
+  }
+</style>

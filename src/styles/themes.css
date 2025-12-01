@@ -1,0 +1,169 @@
+/* ===== SUPATENT THEME SYSTEM ===== */
+/* Three themes: light, sunset, moonlit */
+/* Usage: Set data-theme="light|sunset|moonlit" on <html> element */
+
+/* Light Theme (Default) */
+:root,
+[data-theme="light"] {
+    --bg-base: #FFFBF5;
+    --bg-card: #FFFFFF;
+    --bg-soft: #F9F5F0;
+    --bg-muted: #F3EDE6;
+    --bg-nav: rgba(255, 251, 245, 0.9);
+    --bg-code: #F5F0EA;
+    --bg-code-block: #2A2520;
+
+    --text-primary: #1A1A1A;
+    --text-secondary: #555555;
+    --text-muted: #888888;
+    --text-code: #E8E0D8;
+
+    --accent-primary: #FF6B6B;
+    --accent-secondary: #6BCB77;
+    --accent-tertiary: #9B8DFF;
+    --accent-quaternary: #4ECDC4;
+    --accent-link: #E85D5D;
+
+    --gradient-brand: linear-gradient(135deg, #FF6B6B 0%, #FFA07A 50%, #FFD93D 100%);
+
+    --border-light: rgba(0, 0, 0, 0.08);
+    --border-medium: rgba(0, 0, 0, 0.12);
+
+    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.04);
+    --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.06);
+    --shadow-large: 0 8px 40px rgba(0, 0, 0, 0.08);
+
+    --scrollbar-bg: #E8E0D8;
+    --scrollbar-thumb: #C8C0B8;
+
+    /* Syntax highlighting - light mode */
+    --syntax-keyword: #D73A49;
+    --syntax-string: #22863A;
+    --syntax-comment: #6A737D;
+    --syntax-function: #6F42C1;
+    --syntax-number: #005CC5;
+}
+
+/* Sunset Theme (Warm Dark) */
+[data-theme="sunset"] {
+    --bg-base: #1A1714;
+    --bg-card: #242019;
+    --bg-soft: #2D261F;
+    --bg-muted: #362E26;
+    --bg-nav: rgba(26, 23, 20, 0.9);
+    --bg-code: #2D261F;
+    --bg-code-block: #1A1714;
+
+    --text-primary: #F5F0E8;
+    --text-secondary: #C9C0B5;
+    --text-muted: #A89F94;
+    --text-code: #F5F0E8;
+
+    --accent-primary: #FF6B6B;
+    --accent-secondary: #8EEDC7;
+    --accent-tertiary: #E8A0BF;
+    --accent-quaternary: #FFB347;
+    --accent-link: #FF8585;
+
+    --gradient-brand: linear-gradient(135deg, #FF6B6B 0%, #FFB347 50%, #FFD93D 100%);
+
+    --border-light: rgba(255, 255, 255, 0.06);
+    --border-medium: rgba(255, 255, 255, 0.1);
+
+    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.4);
+    --shadow-large: 0 8px 40px rgba(0, 0, 0, 0.5);
+
+    --scrollbar-bg: #2D261F;
+    --scrollbar-thumb: #4A4038;
+
+    /* Syntax highlighting - sunset mode */
+    --syntax-keyword: #FF7B7B;
+    --syntax-string: #8EEDC7;
+    --syntax-comment: #A89F94;
+    --syntax-function: #E8A0BF;
+    --syntax-number: #FFB347;
+}
+
+/* Moonlit Theme (Cool Dark) */
+[data-theme="moonlit"] {
+    --bg-base: #12141A;
+    --bg-card: #1C1F26;
+    --bg-soft: #232730;
+    --bg-muted: #2A2F3A;
+    --bg-nav: rgba(18, 20, 26, 0.9);
+    --bg-code: #232730;
+    --bg-code-block: #12141A;
+
+    --text-primary: #E8ECF4;
+    --text-secondary: #A8B2C4;
+    --text-muted: #8B93A6;
+    --text-code: #E8ECF4;
+
+    --accent-primary: #9B8DFF;
+    --accent-secondary: #8EEDC7;
+    --accent-tertiary: #7DD3E8;
+    --accent-quaternary: #6B9FFF;
+    --accent-link: #A89BFF;
+
+    --gradient-brand: linear-gradient(135deg, #9B8DFF 0%, #7DD3E8 50%, #8EEDC7 100%);
+
+    --border-light: rgba(255, 255, 255, 0.06);
+    --border-medium: rgba(255, 255, 255, 0.1);
+
+    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.5);
+    --shadow-large: 0 8px 40px rgba(0, 0, 0, 0.6);
+
+    --scrollbar-bg: #232730;
+    --scrollbar-thumb: #3A4050;
+
+    /* Syntax highlighting - moonlit mode */
+    --syntax-keyword: #9B8DFF;
+    --syntax-string: #8EEDC7;
+    --syntax-comment: #8B93A6;
+    --syntax-function: #7DD3E8;
+    --syntax-number: #6B9FFF;
+}
+
+/* ===== GLOBAL TRANSITIONS ===== */
+html {
+    color-scheme: light dark;
+}
+
+body {
+    background: var(--bg-base);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth transitions for themed elements */
+*,
+*::before,
+*::after {
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Exclude specific elements from transition */
+a, button, input, textarea {
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
