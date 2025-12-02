@@ -1,0 +1,1312 @@
+---
+// Features Explorer component - Interactive feature demos with sticky navigation
+// Full-page sticky scroll layout with IntersectionObserver-based navigation
+// Users can click "See it in action" to explore each feature with live demos
+---
+
+<section id="features" class="features-section">
+  <div class="features-header">
+    <span class="features-label">Features</span>
+    <h2 class="features-title">Built for teams who ship</h2>
+    <p class="features-desc">Everything you need to manage content at scale. Click "See it in action" to explore each feature.</p>
+  </div>
+
+  <div class="features-explorer">
+    <!-- Left Sticky Navigation -->
+    <nav class="features-nav">
+      <div class="nav-progress">
+        <div class="nav-progress-bar" id="features-progress-bar"></div>
+      </div>
+      <div class="nav-label">Core Features</div>
+      <div class="nav-list">
+        <div class="nav-item active" data-panel="rollback">
+          <div class="nav-item-number">01</div>
+          <div class="nav-item-title">Instant Rollback</div>
+          <div class="nav-item-desc">Version control for content</div>
+        </div>
+        <div class="nav-item" data-panel="translation">
+          <div class="nav-item-number">02</div>
+          <div class="nav-item-title">One-Click Translation</div>
+          <div class="nav-item-desc">40+ languages instantly</div>
+        </div>
+        <div class="nav-item" data-panel="safety">
+          <div class="nav-item-number">03</div>
+          <div class="nav-item-title">AI Safety Layer</div>
+          <div class="nav-item-desc">Content protection</div>
+        </div>
+        <div class="nav-item" data-panel="cdn">
+          <div class="nav-item-number">04</div>
+          <div class="nav-item-title">Global Edge Network</div>
+          <div class="nav-item-desc">Lightning fast delivery</div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Right Content - Scrollable Panels -->
+    <main class="features-content">
+      <!-- Panel 1: Rollback -->
+      <section class="content-panel" id="panel-rollback">
+        <div class="feature-description" id="desc-rollback">
+          <h3 class="feature-title">Never lose your work again</h3>
+          <p class="feature-text">Every edit is automatically versioned. Made a mistake? Roll back to any previous version with a single click. Compare changes side-by-side before restoring.</p>
+          <div class="feature-benefits">
+            <div class="benefit">
+              <span class="benefit-check">✓</span>
+              <span>Automatic versioning on every save</span>
+            </div>
+            <div class="benefit">
+              <span class="benefit-check">✓</span>
+              <span>Visual diff comparison between versions</span>
+            </div>
+            <div class="benefit">
+              <span class="benefit-check">✓</span>
+              <span>Restore with one click, or cherry-pick changes</span>
+            </div>
+          </div>
+          <button class="toggle-demo-btn" data-demo="rollback">
+            <span>See it in action</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="demo-area" id="demo-rollback">
+          <div class="demo-header">
+            <h4 class="demo-title">Version History</h4>
+            <button class="demo-close" data-close="rollback">
+              <span>Back to overview</span>
+            </button>
+          </div>
+          <div class="demo-container">
+            <div class="demo-content">
+              <div class="version-list">
+                <div class="version-item current" data-version="3">
+                  <div class="version-dot"></div>
+                  <div class="version-info">
+                    <div class="version-name">Current version</div>
+                    <div class="version-meta">Today at 2:34 PM · You</div>
+                  </div>
+                  <span class="version-badge">Live</span>
+                </div>
+                <div class="version-item" data-version="2">
+                  <div class="version-dot"></div>
+                  <div class="version-info">
+                    <div class="version-name">Updated headline copy</div>
+                    <div class="version-meta">Today at 11:20 AM · Sarah</div>
+                  </div>
+                  <span class="version-badge">Click to restore</span>
+                </div>
+                <div class="version-item" data-version="1">
+                  <div class="version-dot"></div>
+                  <div class="version-info">
+                    <div class="version-name">Initial draft</div>
+                    <div class="version-meta">Yesterday at 4:15 PM · You</div>
+                  </div>
+                  <span class="version-badge">Click to restore</span>
+                </div>
+              </div>
+              <div class="content-preview-box" id="preview-rollback">
+                <h5>Welcome to SUPATENT</h5>
+                <p>The content management platform built for teams who ship fast and need to stay in control.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 2: Translation -->
+      <section class="content-panel" id="panel-translation">
+        <div class="feature-description" id="desc-translation">
+          <h3 class="feature-title">Go global in minutes</h3>
+          <p class="feature-text">Translate your entire content library to 40+ languages with a single click. AI-powered translations that preserve your brand voice and formatting.</p>
+          <div class="feature-benefits">
+            <div class="benefit">
+              <span class="benefit-check">✓</span>
+              <span>Support for 40+ languages including RTL</span>
+            </div>
+            <div class="benefit">
+              <span class="benefit-check">✓</span>
+              <span>Preserves HTML, Markdown, and formatting</span>
+            </div>
+            <div class="benefit">
+              <span class="benefit-check">✓</span>
+              <span>SEO metadata translated automatically</span>
+            </div>
+          </div>
+          <button class="toggle-demo-btn" data-demo="translation">
+            <span>See it in action</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="demo-area" id="demo-translation">
+          <div class="demo-header">
+            <h4 class="demo-title">Live Translation</h4>
+            <button class="demo-close" data-close="translation">
+              <span>Back to overview</span>
+            </button>
+          </div>
+          <div class="demo-container">
+            <div class="demo-content">
+              <div class="lang-buttons">
+                <button class="lang-btn active" data-lang="es">Spanish</button>
+                <button class="lang-btn" data-lang="fr">French</button>
+                <button class="lang-btn" data-lang="de">German</button>
+                <button class="lang-btn" data-lang="ja">Japanese</button>
+              </div>
+              <div class="translation-compare">
+                <div class="translation-box">
+                  <div class="translation-box-header">
+                    <span>🇺🇸</span> English (Source)
+                  </div>
+                  <div class="translation-box-body">
+                    <h5>Welcome to our platform</h5>
+                    <p>Build faster, ship with confidence. Our tools help teams create amazing products.</p>
+                  </div>
+                </div>
+                <div class="translation-arrow">→</div>
+                <div class="translation-box" id="translation-output">
+                  <div class="translation-box-header">
+                    <span id="output-flag">🇪🇸</span> <span id="output-lang">Spanish</span>
+                  </div>
+                  <div class="translation-box-body">
+                    <h5 id="output-title">Bienvenido a nuestra plataforma</h5>
+                    <p id="output-text">Construye más rápido, envía con confianza. Nuestras herramientas ayudan a los equipos a crear productos increíbles.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 3: Safety -->
+      <section class="content-panel" id="panel-safety">
+        <div class="feature-description" id="desc-safety">
+          <h3 class="feature-title">Protect your brand automatically</h3>
+          <p class="feature-text">AI-powered moderation scans content in real-time before it goes live. Catch issues, maintain brand voice, and ensure compliance.</p>
+          <div class="feature-benefits">
+            <div class="benefit">
+              <span class="benefit-check">✓</span>
+              <span>Real-time scanning as you type</span>
+            </div>
+            <div class="benefit">
+              <span class="benefit-check">✓</span>
+              <span>Custom brand guidelines and tone rules</span>
+            </div>
+            <div class="benefit">
+              <span class="benefit-check">✓</span>
+              <span>Industry compliance checks (GDPR, etc.)</span>
+            </div>
+          </div>
+          <button class="toggle-demo-btn" data-demo="safety">
+            <span>See it in action</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="demo-area" id="demo-safety">
+          <div class="demo-header">
+            <h4 class="demo-title">Content Scanner</h4>
+            <button class="demo-close" data-close="safety">
+              <span>Back to overview</span>
+            </button>
+          </div>
+          <div class="demo-container">
+            <div class="demo-content">
+              <div class="safety-input-box" id="safety-input">
+                <label>Content being analyzed</label>
+                <p>Check out our AMAZING product! It's literally the BEST thing ever!!! Buy now for just $9.99 (limited time). Contact support@example.com</p>
+              </div>
+              <div class="safety-checks" id="safety-checks">
+                <div class="safety-check-item" data-check="tone">
+                  <div class="check-indicator">—</div>
+                  <div class="check-info">
+                    <div class="check-name">Brand voice consistency</div>
+                    <div class="check-detail">Analyzing tone...</div>
+                  </div>
+                </div>
+                <div class="safety-check-item" data-check="claims">
+                  <div class="check-indicator">—</div>
+                  <div class="check-info">
+                    <div class="check-name">Unsubstantiated claims</div>
+                    <div class="check-detail">Checking claims...</div>
+                  </div>
+                </div>
+                <div class="safety-check-item" data-check="compliance">
+                  <div class="check-indicator">—</div>
+                  <div class="check-info">
+                    <div class="check-name">Pricing compliance</div>
+                    <div class="check-detail">Verifying disclosures...</div>
+                  </div>
+                </div>
+                <div class="safety-check-item" data-check="pii">
+                  <div class="check-indicator">—</div>
+                  <div class="check-info">
+                    <div class="check-name">PII detection</div>
+                    <div class="check-detail">Scanning for personal data...</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 4: CDN -->
+      <section class="content-panel" id="panel-cdn">
+        <div class="feature-description" id="desc-cdn">
+          <h3 class="feature-title">Blazing fast, everywhere</h3>
+          <p class="feature-text">Content delivered from edge locations around the world in milliseconds. Automatic optimization ensures the fastest experience for every user.</p>
+          <div class="feature-benefits">
+            <div class="benefit">
+              <span class="benefit-check">✓</span>
+              <span>200+ edge locations globally</span>
+            </div>
+            <div class="benefit">
+              <span class="benefit-check">✓</span>
+              <span>Automatic image and video optimization</span>
+            </div>
+            <div class="benefit">
+              <span class="benefit-check">✓</span>
+              <span>99.99% uptime SLA</span>
+            </div>
+          </div>
+          <button class="toggle-demo-btn" data-demo="cdn">
+            <span>See it in action</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="demo-area" id="demo-cdn">
+          <div class="demo-header">
+            <h4 class="demo-title">Global Network</h4>
+            <button class="demo-close" data-close="cdn">
+              <span>Back to overview</span>
+            </button>
+          </div>
+          <div class="demo-container">
+            <div class="demo-content">
+              <div class="cdn-visualization">
+                <div class="cdn-nodes-row">
+                  <div class="cdn-node" data-node="us-west">
+                    <div class="cdn-node-circle"></div>
+                    <span class="cdn-node-label">US West</span>
+                  </div>
+                  <div class="cdn-node" data-node="us-east">
+                    <div class="cdn-node-circle"></div>
+                    <span class="cdn-node-label">US East</span>
+                  </div>
+                  <div class="cdn-node" data-node="eu">
+                    <div class="cdn-node-circle"></div>
+                    <span class="cdn-node-label">Europe</span>
+                  </div>
+                  <div class="cdn-node" data-node="asia">
+                    <div class="cdn-node-circle"></div>
+                    <span class="cdn-node-label">Asia</span>
+                  </div>
+                  <div class="cdn-node" data-node="oceania">
+                    <div class="cdn-node-circle"></div>
+                    <span class="cdn-node-label">Oceania</span>
+                  </div>
+                </div>
+              </div>
+              <div class="cdn-metrics">
+                <div class="cdn-metric" id="metric-latency">
+                  <div class="cdn-metric-value">—</div>
+                  <div class="cdn-metric-label">Latency (ms)</div>
+                </div>
+                <div class="cdn-metric" id="metric-cache">
+                  <div class="cdn-metric-value">—</div>
+                  <div class="cdn-metric-label">Cache Hit Rate</div>
+                </div>
+                <div class="cdn-metric" id="metric-uptime">
+                  <div class="cdn-metric-value">—</div>
+                  <div class="cdn-metric-label">Uptime</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</section>
+
+<style>
+  .features-section {
+    padding: 0;
+    background: var(--bg-base);
+  }
+
+  .features-header {
+    text-align: center;
+    padding: 6rem 2rem 3rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .features-label {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+
+  .features-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--text-primary);
+  }
+
+  .features-desc {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Main Sticky Layout */
+  .features-explorer {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* Left Sticky Navigation */
+  .features-nav {
+    width: 340px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: 3rem 2rem;
+    border-right: 1px solid var(--border-light);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-progress {
+    position: absolute;
+    left: 0;
+    top: 3rem;
+    bottom: 3rem;
+    width: 3px;
+    background: var(--border-light);
+    border-radius: 2px;
+  }
+
+  .nav-progress-bar {
+    width: 100%;
+    height: 25%;
+    background: var(--accent-primary);
+    border-radius: 2px;
+    transition: height 0.4s ease;
+  }
+
+  .nav-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+  }
+
+  .nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .nav-item {
+    padding: 1.25rem 1rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.5;
+  }
+
+  .nav-item:hover {
+    opacity: 0.75;
+    background: var(--bg-soft);
+  }
+
+  .nav-item.active {
+    opacity: 1;
+    background: var(--bg-card);
+  }
+
+  .nav-item-number {
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .nav-item.active .nav-item-number {
+    color: var(--accent-primary);
+  }
+
+  .nav-item-title {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .nav-item-desc {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* Right Content - Scrollable */
+  .features-content {
+    flex: 1;
+    padding: 0;
+  }
+
+  .content-panel {
+    min-height: 100vh;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .feature-description {
+    max-width: 640px;
+    transition: all 0.5s ease;
+  }
+
+  .feature-description.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .feature-title {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+  }
+
+  .feature-text {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .feature-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    margin-bottom: 3rem;
+  }
+
+  .benefit {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 1rem;
+    color: var(--text-secondary);
+  }
+
+  .benefit-check {
+    color: var(--accent-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Toggle Button */
+  .toggle-demo-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.75rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-medium);
+    border-radius: 100px;
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .toggle-demo-btn:hover {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: white;
+  }
+
+  .toggle-demo-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Demo Area */
+  .demo-area {
+    opacity: 0;
+    transform: translateY(20px);
+    position: absolute;
+    pointer-events: none;
+    transition: all 0.5s ease;
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .demo-area.visible {
+    opacity: 1;
+    transform: translateY(0);
+    position: relative;
+    pointer-events: auto;
+  }
+
+  .demo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .demo-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .demo-close {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-soft);
+    border: 1px solid var(--border-light);
+    border-radius: 100px;
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .demo-close:hover {
+    background: var(--bg-elevated, var(--bg-soft));
+    color: var(--text-primary);
+  }
+
+  .demo-container {
+    background: var(--bg-soft);
+    border: 1px solid var(--border-light);
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  .demo-content {
+    padding: 1.5rem;
+  }
+
+  /* Rollback Demo */
+  .version-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .version-item {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 0.625rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .version-item:hover {
+    border-color: var(--accent-primary);
+  }
+
+  .version-item.current {
+    border-color: var(--accent-secondary);
+    background: color-mix(in srgb, var(--accent-secondary) 5%, var(--bg-card));
+  }
+
+  .version-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  .version-item.current .version-dot {
+    background: var(--accent-secondary);
+    box-shadow: 0 0 8px var(--accent-secondary);
+  }
+
+  .version-info {
+    flex: 1;
+  }
+
+  .version-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.125rem;
+  }
+
+  .version-meta {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .version-badge {
+    font-size: 0.6875rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 100px;
+    background: var(--bg-soft);
+    color: var(--text-muted);
+  }
+
+  .version-item.current .version-badge {
+    background: var(--accent-secondary);
+    color: var(--bg-base);
+  }
+
+  .content-preview-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 0.625rem;
+    padding: 1.25rem;
+    transition: all 0.4s ease;
+  }
+
+  .content-preview-box.flash {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 30px color-mix(in srgb, var(--accent-primary) 20%, transparent);
+  }
+
+  .content-preview-box h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.375rem;
+    color: var(--text-primary);
+  }
+
+  .content-preview-box p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* Translation Demo */
+  .lang-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .lang-btn {
+    padding: 0.5rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .lang-btn:hover {
+    border-color: var(--accent-primary);
+  }
+
+  .lang-btn.active {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: white;
+  }
+
+  .translation-compare {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .translation-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 0.625rem;
+    overflow: hidden;
+  }
+
+  .translation-box-header {
+    padding: 0.75rem 1rem;
+    background: var(--bg-soft);
+    border-bottom: 1px solid var(--border-light);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .translation-box-body {
+    padding: 1rem;
+  }
+
+  .translation-box-body h5 {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    margin-bottom: 0.375rem;
+    color: var(--text-primary);
+  }
+
+  .translation-box-body p {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .translation-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 1.25rem;
+  }
+
+  /* Safety Demo */
+  .safety-input-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 0.625rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .safety-input-box.has-issues {
+    border-color: #f5a623;
+  }
+
+  .safety-input-box label {
+    display: block;
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .safety-input-box p {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+
+  .safety-checks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .safety-check-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    background: var(--bg-card);
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .safety-check-item.passed {
+    background: color-mix(in srgb, var(--accent-secondary) 8%, var(--bg-card));
+  }
+
+  .safety-check-item.warning {
+    background: rgba(245, 166, 35, 0.08);
+  }
+
+  .check-indicator {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--bg-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  .safety-check-item.passed .check-indicator {
+    background: var(--accent-secondary);
+    color: var(--bg-base);
+  }
+
+  .safety-check-item.warning .check-indicator {
+    background: #f5a623;
+    color: var(--bg-base);
+  }
+
+  .check-info {
+    flex: 1;
+  }
+
+  .check-name {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.125rem;
+  }
+
+  .check-detail {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .safety-check-item.warning .check-detail {
+    color: #f5a623;
+  }
+
+  .safety-check-item.passed .check-detail {
+    color: var(--accent-secondary);
+  }
+
+  /* CDN Demo */
+  .cdn-visualization {
+    margin-bottom: 1rem;
+  }
+
+  .cdn-nodes-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    background: var(--bg-card);
+    border-radius: 0.625rem;
+  }
+
+  .cdn-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.3;
+    transition: all 0.4s ease;
+  }
+
+  .cdn-node.active {
+    opacity: 1;
+  }
+
+  .cdn-node-circle {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    position: relative;
+  }
+
+  .cdn-node.active .cdn-node-circle {
+    background: var(--accent-secondary);
+    box-shadow: 0 0 12px var(--accent-secondary);
+  }
+
+  .cdn-node.active .cdn-node-circle::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid var(--accent-secondary);
+    opacity: 0.4;
+    animation: cdnPulse 2s ease-out infinite;
+  }
+
+  @keyframes cdnPulse {
+    0% { transform: scale(1); opacity: 0.4; }
+    100% { transform: scale(2); opacity: 0; }
+  }
+
+  .cdn-node-label {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+  }
+
+  .cdn-node.active .cdn-node-label {
+    color: var(--text-secondary);
+  }
+
+  .cdn-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .cdn-metric {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 0.625rem;
+    padding: 1.25rem;
+    text-align: center;
+    transition: all 0.4s ease;
+  }
+
+  .cdn-metric.active {
+    border-color: var(--accent-primary);
+  }
+
+  .cdn-metric-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.125rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .cdn-metric.active .cdn-metric-value {
+    color: var(--accent-primary);
+  }
+
+  .cdn-metric-label {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .features-explorer {
+      flex-direction: column;
+    }
+
+    .features-nav {
+      width: 100%;
+      height: auto;
+      position: relative;
+      border-right: none;
+      border-bottom: 1px solid var(--border-light);
+      padding: 2rem;
+    }
+
+    .nav-list {
+      flex-direction: row;
+      overflow-x: auto;
+      gap: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .nav-item {
+      min-width: 180px;
+      flex-shrink: 0;
+    }
+
+    .nav-progress {
+      display: none;
+    }
+
+    .content-panel {
+      min-height: auto;
+      padding: 3rem 2rem;
+    }
+
+    .feature-title {
+      font-size: 2rem;
+    }
+
+    .translation-compare {
+      grid-template-columns: 1fr;
+    }
+
+    .translation-arrow {
+      transform: rotate(90deg);
+      padding: 0.5rem 0;
+    }
+
+    .cdn-metrics {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  // Navigation & Scroll Sync
+  const navItems = document.querySelectorAll('.features-nav .nav-item');
+  const panels = document.querySelectorAll('.content-panel');
+  const progressBar = document.getElementById('features-progress-bar');
+
+  // Intersection Observer for scroll-based nav highlighting
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -60% 0px',
+    threshold: 0
+  };
+
+  const panelObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const panelId = entry.target.id.replace('panel-', '');
+
+        navItems.forEach(item => {
+          item.classList.toggle('active', item.dataset.panel === panelId);
+        });
+
+        // Update progress bar
+        const index = Array.from(panels).indexOf(entry.target);
+        const progress = ((index + 1) / panels.length) * 100;
+        progressBar.style.height = `${progress}%`;
+      }
+    });
+  }, observerOptions);
+
+  panels.forEach(panel => panelObserver.observe(panel));
+
+  // Click nav to scroll
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const panelId = item.dataset.panel;
+      document.getElementById(`panel-${panelId}`).scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    });
+  });
+
+  // Demo Toggle Logic
+  const toggleBtns = document.querySelectorAll('.toggle-demo-btn');
+  const closeBtns = document.querySelectorAll('.demo-close');
+
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const demoId = btn.dataset.demo;
+      showDemo(demoId);
+    });
+  });
+
+  closeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const demoId = btn.dataset.close;
+      hideDemo(demoId);
+    });
+  });
+
+  function showDemo(id) {
+    const desc = document.getElementById(`desc-${id}`);
+    const demo = document.getElementById(`demo-${id}`);
+
+    desc.classList.add('hidden');
+    setTimeout(() => {
+      demo.classList.add('visible');
+      runDemo(id);
+    }, 200);
+  }
+
+  function hideDemo(id) {
+    const desc = document.getElementById(`desc-${id}`);
+    const demo = document.getElementById(`demo-${id}`);
+
+    demo.classList.remove('visible');
+    setTimeout(() => {
+      desc.classList.remove('hidden');
+      resetDemo(id);
+    }, 200);
+  }
+
+  function runDemo(id) {
+    if (id === 'safety') runSafetyDemo();
+    if (id === 'cdn') runCDNDemo();
+  }
+
+  function resetDemo(id) {
+    if (id === 'rollback') resetRollbackDemo();
+    if (id === 'safety') resetSafetyDemo();
+    if (id === 'cdn') resetCDNDemo();
+  }
+
+  // Rollback Demo
+  const versionItems = document.querySelectorAll('.version-item');
+  const previewBox = document.getElementById('preview-rollback');
+
+  const versionContent = {
+    3: { title: 'Welcome to SUPATENT', text: 'The content management platform built for teams who ship fast and need to stay in control.' },
+    2: { title: 'Welcome to SUPATENT', text: 'Build faster. Ship with confidence. The CMS that keeps up with your team.' },
+    1: { title: 'Hello World', text: 'This is the initial draft of our landing page. Still working on the messaging.' }
+  };
+
+  versionItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const version = item.dataset.version;
+
+      versionItems.forEach(v => {
+        v.classList.remove('current');
+        v.querySelector('.version-badge').textContent = 'Click to restore';
+      });
+
+      item.classList.add('current');
+      item.querySelector('.version-badge').textContent = 'Live';
+
+      previewBox.classList.add('flash');
+      setTimeout(() => {
+        previewBox.querySelector('h5').textContent = versionContent[version].title;
+        previewBox.querySelector('p').textContent = versionContent[version].text;
+        setTimeout(() => previewBox.classList.remove('flash'), 300);
+      }, 150);
+    });
+  });
+
+  function resetRollbackDemo() {
+    versionItems.forEach(v => {
+      v.classList.remove('current');
+      v.querySelector('.version-badge').textContent = 'Click to restore';
+    });
+    versionItems[0].classList.add('current');
+    versionItems[0].querySelector('.version-badge').textContent = 'Live';
+    previewBox.querySelector('h5').textContent = versionContent[3].title;
+    previewBox.querySelector('p').textContent = versionContent[3].text;
+  }
+
+  // Translation Demo
+  const langBtns = document.querySelectorAll('.lang-btn');
+  const translations = {
+    es: { flag: '🇪🇸', lang: 'Spanish', title: 'Bienvenido a nuestra plataforma', text: 'Construye más rápido, envía con confianza. Nuestras herramientas ayudan a los equipos a crear productos increíbles.' },
+    fr: { flag: '🇫🇷', lang: 'French', title: 'Bienvenue sur notre plateforme', text: 'Construisez plus vite, livrez en toute confiance. Nos outils aident les équipes à créer des produits incroyables.' },
+    de: { flag: '🇩🇪', lang: 'German', title: 'Willkommen auf unserer Plattform', text: 'Schneller bauen, mit Vertrauen liefern. Unsere Tools helfen Teams, großartige Produkte zu erstellen.' },
+    ja: { flag: '🇯🇵', lang: 'Japanese', title: 'プラットフォームへようこそ', text: 'より速く構築し、自信を持って出荷。私たちのツールは、チームが素晴らしい製品を作成するのを助けます。' }
+  };
+
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.dataset.lang;
+      const t = translations[lang];
+
+      langBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.getElementById('output-flag').textContent = t.flag;
+      document.getElementById('output-lang').textContent = t.lang;
+      document.getElementById('output-title').textContent = t.title;
+      document.getElementById('output-text').textContent = t.text;
+    });
+  });
+
+  // Safety Demo
+  const safetyInput = document.getElementById('safety-input');
+  const safetyChecks = document.querySelectorAll('.safety-check-item');
+
+  const safetyResults = {
+    tone: { status: 'warning', detail: 'Excessive caps and superlatives detected' },
+    claims: { status: 'warning', detail: '"BEST thing ever" needs substantiation' },
+    compliance: { status: 'passed', detail: 'Pricing disclosure present' },
+    pii: { status: 'warning', detail: 'Email address detected' }
+  };
+
+  function runSafetyDemo() {
+    safetyChecks.forEach((check, index) => {
+      setTimeout(() => {
+        const result = safetyResults[check.dataset.check];
+        check.classList.add(result.status);
+        check.querySelector('.check-indicator').textContent = result.status === 'passed' ? '✓' : '!';
+        check.querySelector('.check-detail').textContent = result.detail;
+
+        if (result.status === 'warning') {
+          safetyInput.classList.add('has-issues');
+        }
+      }, 400 + (index * 500));
+    });
+  }
+
+  function resetSafetyDemo() {
+    safetyInput.classList.remove('has-issues');
+    safetyChecks.forEach(check => {
+      check.classList.remove('passed', 'warning');
+      check.querySelector('.check-indicator').textContent = '—';
+      check.querySelector('.check-detail').textContent = 'Analyzing...';
+    });
+  }
+
+  // CDN Demo
+  const cdnNodes = document.querySelectorAll('.cdn-node');
+  const metricLatency = document.querySelector('#metric-latency .cdn-metric-value');
+  const metricCache = document.querySelector('#metric-cache .cdn-metric-value');
+  const metricUptime = document.querySelector('#metric-uptime .cdn-metric-value');
+
+  function runCDNDemo() {
+    cdnNodes.forEach((node, index) => {
+      setTimeout(() => node.classList.add('active'), index * 150);
+    });
+
+    setTimeout(() => {
+      animateValue(metricLatency, 0, 23, 800);
+      document.getElementById('metric-latency').classList.add('active');
+    }, 600);
+
+    setTimeout(() => {
+      metricCache.textContent = '98.2%';
+      document.getElementById('metric-cache').classList.add('active');
+    }, 1000);
+
+    setTimeout(() => {
+      metricUptime.textContent = '99.99%';
+      document.getElementById('metric-uptime').classList.add('active');
+    }, 1400);
+  }
+
+  function resetCDNDemo() {
+    cdnNodes.forEach(node => node.classList.remove('active'));
+    document.querySelectorAll('.cdn-metric').forEach(m => m.classList.remove('active'));
+    metricLatency.textContent = '—';
+    metricCache.textContent = '—';
+    metricUptime.textContent = '—';
+  }
+
+  function animateValue(el, start, end, duration) {
+    const range = end - start;
+    const startTime = performance.now();
+
+    function update(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(start + range * eased);
+
+      if (progress < 1) requestAnimationFrame(update);
+    }
+
+    requestAnimationFrame(update);
+  }
+</script>
