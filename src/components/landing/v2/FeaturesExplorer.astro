@@ -2,6 +2,70 @@
 // Features Explorer component - Interactive feature demos with sticky navigation
 // Full-page sticky scroll layout with IntersectionObserver-based navigation
 // Users can click "See it in action" to explore each feature with live demos
+import { cms, extractCollection, type FeatureV2 } from '../../../lib/cms';
+
+// Fetch features from CMS
+let features: FeatureV2[] = [];
+
+try {
+  features = extractCollection<FeatureV2>(
+    await cms.collection('features-v2').all()
+  ).sort((a, b) => a.sort_order - b.sort_order);
+} catch (error) {
+  console.error('Failed to fetch features from CMS:', error);
+}
+
+// Fallback features if CMS is empty
+if (features.length === 0) {
+  features = [
+    {
+      nav_number: '01',
+      nav_title: 'Instant Rollback',
+      nav_description: 'Version control for content',
+      panel_id: 'rollback',
+      feature_title: 'Never lose your work again',
+      feature_text: 'Every edit is automatically versioned. Made a mistake? Roll back to any previous version with a single click. Compare changes side-by-side before restoring.',
+      benefits: 'Automatic versioning on every save\nVisual diff comparison between versions\nRestore with one click, or cherry-pick changes',
+      sort_order: 1
+    },
+    {
+      nav_number: '02',
+      nav_title: 'One-Click Translation',
+      nav_description: '40+ languages instantly',
+      panel_id: 'translation',
+      feature_title: 'Go global in minutes',
+      feature_text: 'Translate your entire content library to 40+ languages with a single click. AI-powered translations that preserve your brand voice and formatting.',
+      benefits: 'Support for 40+ languages including RTL\nPreserves HTML, Markdown, and formatting\nSEO metadata translated automatically',
+      sort_order: 2
+    },
+    {
+      nav_number: '03',
+      nav_title: 'AI Safety Layer',
+      nav_description: 'Content protection',
+      panel_id: 'safety',
+      feature_title: 'Protect your brand automatically',
+      feature_text: 'AI-powered moderation scans content in real-time before it goes live. Catch issues, maintain brand voice, and ensure compliance.',
+      benefits: 'Real-time scanning as you type\nCustom brand guidelines and tone rules\nIndustry compliance checks (GDPR, etc.)',
+      sort_order: 3
+    },
+    {
+      nav_number: '04',
+      nav_title: 'Global Edge Network',
+      nav_description: 'Lightning fast delivery',
+      panel_id: 'cdn',
+      feature_title: 'Blazing fast, everywhere',
+      feature_text: 'Content delivered from edge locations around the world in milliseconds. Automatic optimization ensures the fastest experience for every user.',
+      benefits: '200+ edge locations globally\nAutomatic image and video optimization\n99.99% uptime SLA',
+      sort_order: 4
+    }
+  ];
+}
+
+// Helper to parse benefits (newline-separated)
+const parseBenefits = (benefits: string) => benefits.split('\n').filter(b => b.trim());
+
+// Get feature by panel_id for demo sections
+const getFeature = (panelId: string) => features.find(f => f.panel_id === panelId);
 ---
 
 <section id="features" class="features-section">
@@ -19,26 +83,13 @@
       </div>
       <div class="nav-label">Core Features</div>
       <div class="nav-list">
-        <div class="nav-item active" data-panel="rollback">
-          <div class="nav-item-number">01</div>
-          <div class="nav-item-title">Instant Rollback</div>
-          <div class="nav-item-desc">Version control for content</div>
-        </div>
-        <div class="nav-item" data-panel="translation">
-          <div class="nav-item-number">02</div>
-          <div class="nav-item-title">One-Click Translation</div>
-          <div class="nav-item-desc">40+ languages instantly</div>
-        </div>
-        <div class="nav-item" data-panel="safety">
-          <div class="nav-item-number">03</div>
-          <div class="nav-item-title">AI Safety Layer</div>
-          <div class="nav-item-desc">Content protection</div>
-        </div>
-        <div class="nav-item" data-panel="cdn">
-          <div class="nav-item-number">04</div>
-          <div class="nav-item-title">Global Edge Network</div>
-          <div class="nav-item-desc">Lightning fast delivery</div>
-        </div>
+        {features.map((feature, index) => (
+          <div class={`nav-item ${index === 0 ? 'active' : ''}`} data-panel={feature.panel_id}>
+            <div class="nav-item-number">{feature.nav_number}</div>
+            <div class="nav-item-title">{feature.nav_title}</div>
+            <div class="nav-item-desc">{feature.nav_description}</div>
+          </div>
+        ))}
       </div>
     </nav>
 
@@ -47,21 +98,15 @@
       <!-- Panel 1: Rollback -->
       <section class="content-panel" id="panel-rollback">
         <div class="feature-description" id="desc-rollback">
-          <h3 class="feature-title">Never lose your work again</h3>
-          <p class="feature-text">Every edit is automatically versioned. Made a mistake? Roll back to any previous version with a single click. Compare changes side-by-side before restoring.</p>
+          <h3 class="feature-title">{getFeature('rollback')?.feature_title}</h3>
+          <p class="feature-text">{getFeature('rollback')?.feature_text}</p>
           <div class="feature-benefits">
-            <div class="benefit">
-              <span class="benefit-check">✓</span>
-              <span>Automatic versioning on every save</span>
-            </div>
-            <div class="benefit">
-              <span class="benefit-check">✓</span>
-              <span>Visual diff comparison between versions</span>
-            </div>
-            <div class="benefit">
-              <span class="benefit-check">✓</span>
-              <span>Restore with one click, or cherry-pick changes</span>
-            </div>
+            {parseBenefits(getFeature('rollback')?.benefits || '').map((benefit) => (
+              <div class="benefit">
+                <span class="benefit-check">✓</span>
+                <span>{benefit}</span>
+              </div>
+            ))}
           </div>
           <button class="toggle-demo-btn" data-demo="rollback">
             <span>See it in action</span>
@@ -118,21 +163,15 @@
       <!-- Panel 2: Translation -->
       <section class="content-panel" id="panel-translation">
         <div class="feature-description" id="desc-translation">
-          <h3 class="feature-title">Go global in minutes</h3>
-          <p class="feature-text">Translate your entire content library to 40+ languages with a single click. AI-powered translations that preserve your brand voice and formatting.</p>
+          <h3 class="feature-title">{getFeature('translation')?.feature_title}</h3>
+          <p class="feature-text">{getFeature('translation')?.feature_text}</p>
           <div class="feature-benefits">
-            <div class="benefit">
-              <span class="benefit-check">✓</span>
-              <span>Support for 40+ languages including RTL</span>
-            </div>
-            <div class="benefit">
-              <span class="benefit-check">✓</span>
-              <span>Preserves HTML, Markdown, and formatting</span>
-            </div>
-            <div class="benefit">
-              <span class="benefit-check">✓</span>
-              <span>SEO metadata translated automatically</span>
-            </div>
+            {parseBenefits(getFeature('translation')?.benefits || '').map((benefit) => (
+              <div class="benefit">
+                <span class="benefit-check">✓</span>
+                <span>{benefit}</span>
+              </div>
+            ))}
           </div>
           <button class="toggle-demo-btn" data-demo="translation">
             <span>See it in action</span>
@@ -186,21 +225,15 @@
       <!-- Panel 3: Safety -->
       <section class="content-panel" id="panel-safety">
         <div class="feature-description" id="desc-safety">
-          <h3 class="feature-title">Protect your brand automatically</h3>
-          <p class="feature-text">AI-powered moderation scans content in real-time before it goes live. Catch issues, maintain brand voice, and ensure compliance.</p>
+          <h3 class="feature-title">{getFeature('safety')?.feature_title}</h3>
+          <p class="feature-text">{getFeature('safety')?.feature_text}</p>
           <div class="feature-benefits">
-            <div class="benefit">
-              <span class="benefit-check">✓</span>
-              <span>Real-time scanning as you type</span>
-            </div>
-            <div class="benefit">
-              <span class="benefit-check">✓</span>
-              <span>Custom brand guidelines and tone rules</span>
-            </div>
-            <div class="benefit">
-              <span class="benefit-check">✓</span>
-              <span>Industry compliance checks (GDPR, etc.)</span>
-            </div>
+            {parseBenefits(getFeature('safety')?.benefits || '').map((benefit) => (
+              <div class="benefit">
+                <span class="benefit-check">✓</span>
+                <span>{benefit}</span>
+              </div>
+            ))}
           </div>
           <button class="toggle-demo-btn" data-demo="safety">
             <span>See it in action</span>
@@ -261,21 +294,15 @@
       <!-- Panel 4: CDN -->
       <section class="content-panel" id="panel-cdn">
         <div class="feature-description" id="desc-cdn">
-          <h3 class="feature-title">Blazing fast, everywhere</h3>
-          <p class="feature-text">Content delivered from edge locations around the world in milliseconds. Automatic optimization ensures the fastest experience for every user.</p>
+          <h3 class="feature-title">{getFeature('cdn')?.feature_title}</h3>
+          <p class="feature-text">{getFeature('cdn')?.feature_text}</p>
           <div class="feature-benefits">
-            <div class="benefit">
-              <span class="benefit-check">✓</span>
-              <span>200+ edge locations globally</span>
-            </div>
-            <div class="benefit">
-              <span class="benefit-check">✓</span>
-              <span>Automatic image and video optimization</span>
-            </div>
-            <div class="benefit">
-              <span class="benefit-check">✓</span>
-              <span>99.99% uptime SLA</span>
-            </div>
+            {parseBenefits(getFeature('cdn')?.benefits || '').map((benefit) => (
+              <div class="benefit">
+                <span class="benefit-check">✓</span>
+                <span>{benefit}</span>
+              </div>
+            ))}
           </div>
           <button class="toggle-demo-btn" data-demo="cdn">
             <span>See it in action</span>

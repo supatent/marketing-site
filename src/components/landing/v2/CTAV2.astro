@@ -1,18 +1,36 @@
 ---
 // CTA V2 component - Simple, focused call to action
+import { cms, extractData, type CTAV2 } from '../../../lib/cms';
+
+// Fetch CTA content from CMS
+let cta: CTAV2 | null = null;
+
+try {
+  cta = extractData<CTAV2>(await cms.collection('cta-v2').first());
+} catch (error) {
+  console.error('Failed to fetch CTA content from CMS:', error);
+}
+
+// Fallback values
+const title = cta?.title || 'Ready to ship with confidence?';
+const description = cta?.description || 'Join the teams who trust SUPATENT to manage their content safely at scale.';
+const primaryCtaText = cta?.primary_cta_text || 'Start building for free →';
+const primaryCtaLink = cta?.primary_cta_link || '#pricing';
+const secondaryCtaText = cta?.secondary_cta_text || 'Talk to us';
+const secondaryCtaLink = cta?.secondary_cta_link || '#';
 ---
 
 <section class="cta-section">
   <div class="cta-bg"></div>
   <div class="cta-container">
     <div class="cta-content">
-      <h2 class="cta-title">Ready to ship with confidence?</h2>
+      <h2 class="cta-title">{title}</h2>
       <p class="cta-description">
-        Join the teams who trust SUPATENT to manage their content safely at scale.
+        {description}
       </p>
       <div class="cta-buttons">
-        <a href="#pricing" class="btn btn-primary">Start building for free &rarr;</a>
-        <a href="#" class="btn btn-secondary">Talk to us</a>
+        <a href={primaryCtaLink} class="btn btn-primary" set:html={primaryCtaText} />
+        {secondaryCtaText && <a href={secondaryCtaLink} class="btn btn-secondary">{secondaryCtaText}</a>}
       </div>
     </div>
   </div>

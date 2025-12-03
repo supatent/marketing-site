@@ -127,6 +127,61 @@ export interface CommunityProject {
   sort_order: number;
 }
 
+// ============================================
+// V2 Landing Page Types
+// ============================================
+
+// Singleton: hero-v2
+export interface HeroV2 {
+  tagline: string;
+  title_line_1: string;
+  title_line_2_prefix: string;
+  rotating_words: string; // newline-separated words
+  description: string;
+  primary_cta_text: string;
+  primary_cta_link: string;
+  secondary_cta_text?: string;
+  secondary_cta_link?: string;
+}
+
+// Singleton: cta-v2
+export interface CTAV2 {
+  title: string;
+  description: string;
+  primary_cta_text: string;
+  primary_cta_link: string;
+  secondary_cta_text?: string;
+  secondary_cta_link?: string;
+}
+
+// Singleton: footer-v2
+export interface FooterV2 {
+  brand_name: string;
+  tagline: string;
+  github_url?: string;
+  twitter_url?: string;
+  discord_url?: string;
+  copyright_text: string;
+}
+
+// Collection: features-v2
+export interface FeatureV2 {
+  nav_number: string;
+  nav_title: string;
+  nav_description: string;
+  panel_id: string;
+  feature_title: string;
+  feature_text: string;
+  benefits: string; // newline-separated benefits
+  sort_order: number;
+}
+
+// Collection: trust-badges-v2
+export interface TrustBadgeV2 {
+  text: string;
+  sort_order: number;
+}
+
 // Documentation content types
 export interface DocPage {
   title: string;
