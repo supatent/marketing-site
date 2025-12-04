@@ -18,12 +18,11 @@
     </div>
 
     <!-- Form -->
-    <form id="get-started-form" action="https://formsubmit.co/spark@supatent.ai" method="POST">
+    <form id="get-started-form" action="https://formsubmit.co/ajax/spark@supatent.ai" method="POST">
       <!-- FormSubmit Configuration -->
       <input type="hidden" name="_subject" value="New SUPATENT Interest">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_next" value="https://supatent.ai?submitted=true">
 
       <!-- Step 1: Contact Info -->
       <div class="modal-step" data-step="1">
@@ -631,15 +630,61 @@
       });
     });
 
-    // Check URL for successful submission
-    if (window.location.search.includes('submitted=true')) {
-      // Show success message or toast
-      const url = new URL(window.location.href);
-      url.searchParams.delete('submitted');
-      window.history.replaceState({}, '', url.toString());
+    // Handle form submission via AJAX
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-      // Could show a toast notification here
-      alert('Thank you! We\'ll be in touch soon.');
-    }
+      const submitBtn = form.querySelector('.submit-btn') as HTMLButtonElement;
+      const originalText = submitBtn?.innerHTML;
+      if (submitBtn) {
+        submitBtn.innerHTML = 'Sending... <span class="arrow">→</span>';
+        submitBtn.disabled = true;
+      }
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          // Show success state
+          const modalBody = form.querySelector('.modal-step[data-step="3"] .modal-body');
+          if (modalBody) {
+            modalBody.innerHTML = `
+              <div style="text-align: center; padding: 2rem 0;">
+                <div style="width: 64px; height: 64px; background: color-mix(in srgb, var(--accent-secondary) 20%, transparent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-secondary)" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                </div>
+                <h2 class="step-title">You're on the list!</h2>
+                <p class="step-description">We'll reach out soon to help you get started with SUPATENT.</p>
+              </div>
+            `;
+          }
+          const footer = form.querySelector('.modal-step[data-step="3"] .modal-footer');
+          if (footer) {
+            footer.innerHTML = `
+              <div></div>
+              <button type="button" class="next-btn" onclick="document.getElementById('get-started-modal').classList.remove('active'); document.body.style.overflow = '';">Done <span class="arrow">→</span></button>
+            `;
+          }
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch (error) {
+        if (submitBtn) {
+          submitBtn.innerHTML = originalText || 'Request Access <span class="arrow">→</span>';
+          submitBtn.disabled = false;
+        }
+        alert('Something went wrong. Please try again or email us directly at spark@supatent.ai');
+      }
+    });
   });
 </script>
