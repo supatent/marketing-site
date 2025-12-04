@@ -3,6 +3,8 @@ import type { APIRoute } from 'astro';
 const CMS_BASE_URL = 'https://vibe-cms-app-prod-qoovy.ondigitalocean.app';
 const PROJECT_ID = 'f6691739-7608-430f-9412-3f03e16a28f6';
 const COLLECTION_SLUG = 'waitlist';
+// API key should be set as environment variable in Vercel
+const API_KEY = import.meta.env.VIBE_CMS_API_KEY || process.env.VIBE_CMS_API_KEY;
 
 export const prerender = false;
 
@@ -19,13 +21,41 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    // Create content item in Vibe CMS via public API
+    // First, create a content item
     const createResponse = await fetch(
-      `${CMS_BASE_URL}/api/v1/public/${PROJECT_ID}/collections/${COLLECTION_SLUG}/items`,
+      `${CMS_BASE_URL}/api/v1/projects/${PROJECT_ID}/collections/${COLLECTION_SLUG}/items`,
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'X-API-Key': API_KEY || '',
+        },
+        body: JSON.stringify({
+          status: 'published'
+        })
+      }
+    );
+
+    if (!createResponse.ok) {
+      const errorText = await createResponse.text();
+      console.error('CMS Create Error:', errorText);
+      return new Response(JSON.stringify({ error: 'Failed to create item' }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    const createResult = await createResponse.json();
+    const contentItemId = createResult.id;
+
+    // Then, add the translation with the actual data
+    const translationResponse = await fetch(
+      `${CMS_BASE_URL}/api/v1/projects/${PROJECT_ID}/content/${contentItemId}/translations`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': API_KEY || '',
         },
         body: JSON.stringify({
           locale: 'en-US',
@@ -40,10 +70,10 @@ export const POST: APIRoute = async ({ request }) => {
       }
     );
 
-    if (!createResponse.ok) {
-      const errorText = await createResponse.text();
-      console.error('CMS Error:', errorText);
-      return new Response(JSON.stringify({ error: 'Failed to save submission' }), {
+    if (!translationResponse.ok) {
+      const errorText = await translationResponse.text();
+      console.error('CMS Translation Error:', errorText);
+      return new Response(JSON.stringify({ error: 'Failed to save data' }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' }
       });
