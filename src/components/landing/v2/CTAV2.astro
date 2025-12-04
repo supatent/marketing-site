@@ -29,7 +29,7 @@ const secondaryCtaLink = cta?.secondary_cta_link || '#';
         {description}
       </p>
       <div class="cta-buttons">
-        <a href={primaryCtaLink} class="btn btn-primary" set:html={primaryCtaText} />
+        <a href="#" class="btn btn-primary" data-open-modal="get-started" set:html={primaryCtaText} />
         {secondaryCtaText && <a href={secondaryCtaLink} class="btn btn-secondary">{secondaryCtaText}</a>}
       </div>
     </div>

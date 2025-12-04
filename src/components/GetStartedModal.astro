@@ -1,0 +1,645 @@
+---
+// Get Started Modal - Multi-step wizard for collecting project details
+// Sends form data to spark@supatent.ai
+---
+
+<!-- Modal Overlay -->
+<div id="get-started-modal" class="modal-overlay" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <!-- Header -->
+    <div class="modal-header">
+      <span class="modal-logo">SUPATENT</span>
+      <button class="close-btn" aria-label="Close modal">&times;</button>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+      <div class="progress-fill" data-step="1"></div>
+    </div>
+
+    <!-- Form -->
+    <form id="get-started-form" action="https://formsubmit.co/spark@supatent.ai" method="POST">
+      <!-- FormSubmit Configuration -->
+      <input type="hidden" name="_subject" value="New SUPATENT Interest">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://supatent.ai?submitted=true">
+
+      <!-- Step 1: Contact Info -->
+      <div class="modal-step" data-step="1">
+        <div class="modal-body">
+          <div class="step-indicator">
+            <span class="step-number">1</span>
+            <span class="step-text">of 3 steps</span>
+          </div>
+          <h2 id="modal-title" class="step-title">Let's get started</h2>
+          <p class="step-description">Tell us a bit about yourself and your project</p>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="you@company.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="project-name">Project Name</label>
+            <input type="text" id="project-name" name="project_name" class="form-input" placeholder="My awesome project">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div></div>
+          <button type="button" class="next-btn" data-next="2">Continue <span class="arrow">→</span></button>
+        </div>
+      </div>
+
+      <!-- Step 2: Project Type -->
+      <div class="modal-step" data-step="2" style="display: none;">
+        <div class="modal-body">
+          <div class="step-indicator">
+            <span class="step-number">2</span>
+            <span class="step-text">of 3 steps</span>
+          </div>
+          <h2 class="step-title">What are you building?</h2>
+          <p class="step-description">Select the type of project you want to manage with SUPATENT</p>
+
+          <input type="hidden" id="project-type" name="project_type" value="">
+
+          <div class="option-cards">
+            <div class="option-card" data-value="Landing Page">
+              <div class="option-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <path d="M3 9h18M9 21V9"/>
+                </svg>
+              </div>
+              <div class="option-title">Landing Page</div>
+              <div class="option-desc">Marketing & conversion</div>
+            </div>
+            <div class="option-card" data-value="Web App">
+              <div class="option-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="2" y="3" width="20" height="14" rx="2"/>
+                  <path d="M8 21h8M12 17v4"/>
+                </svg>
+              </div>
+              <div class="option-title">Web App</div>
+              <div class="option-desc">SaaS & products</div>
+            </div>
+            <div class="option-card" data-value="E-commerce">
+              <div class="option-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="9" cy="21" r="1"/>
+                  <circle cx="20" cy="21" r="1"/>
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                </svg>
+              </div>
+              <div class="option-title">E-commerce</div>
+              <div class="option-desc">Products & stores</div>
+            </div>
+            <div class="option-card" data-value="Blog">
+              <div class="option-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                  <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                  <path d="M2 2l7.586 7.586"/>
+                  <circle cx="11" cy="11" r="2"/>
+                </svg>
+              </div>
+              <div class="option-title">Blog</div>
+              <div class="option-desc">Content & articles</div>
+            </div>
+            <div class="option-card" data-value="Documentation">
+              <div class="option-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                </svg>
+              </div>
+              <div class="option-title">Documentation</div>
+              <div class="option-desc">Guides & references</div>
+            </div>
+            <div class="option-card" data-value="Other">
+              <div class="option-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+              </div>
+              <div class="option-title">Other</div>
+              <div class="option-desc">Custom project</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="back-btn" data-back="1"><span class="arrow">←</span> Back</button>
+          <button type="button" class="next-btn" data-next="3">Continue <span class="arrow">→</span></button>
+        </div>
+      </div>
+
+      <!-- Step 3: Team Size -->
+      <div class="modal-step" data-step="3" style="display: none;">
+        <div class="modal-body">
+          <div class="step-indicator">
+            <span class="step-number">3</span>
+            <span class="step-text">of 3 steps</span>
+          </div>
+          <h2 class="step-title">How big is your team?</h2>
+          <p class="step-description">This helps us understand your needs better</p>
+
+          <input type="hidden" id="team-size" name="team_size" value="">
+
+          <div class="option-cards team-size-cards">
+            <div class="option-card" data-value="Solo">
+              <div class="option-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </div>
+              <div class="option-title">Solo</div>
+              <div class="option-desc">Just me</div>
+            </div>
+            <div class="option-card" data-value="Small (2-10)">
+              <div class="option-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <div class="option-title">Small</div>
+              <div class="option-desc">2-10 people</div>
+            </div>
+            <div class="option-card" data-value="Medium (11-50)">
+              <div class="option-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M18 21a8 8 0 0 0-16 0"/>
+                  <circle cx="10" cy="8" r="5"/>
+                  <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/>
+                </svg>
+              </div>
+              <div class="option-title">Medium</div>
+              <div class="option-desc">11-50 people</div>
+            </div>
+            <div class="option-card" data-value="Large (50+)">
+              <div class="option-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M3 21h18"/>
+                  <path d="M9 8h1"/>
+                  <path d="M9 12h1"/>
+                  <path d="M9 16h1"/>
+                  <path d="M14 8h1"/>
+                  <path d="M14 12h1"/>
+                  <path d="M14 16h1"/>
+                  <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/>
+                </svg>
+              </div>
+              <div class="option-title">Large</div>
+              <div class="option-desc">50+ people</div>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 1.5rem;">
+            <label class="form-label" for="message">Anything else? (optional)</label>
+            <textarea id="message" name="message" class="form-input form-textarea" placeholder="Tell us about your project goals..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="back-btn" data-back="2"><span class="arrow">←</span> Back</button>
+          <button type="submit" class="next-btn submit-btn">Request Access <span class="arrow">→</span></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<style>
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 1rem;
+  }
+
+  .modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal {
+    background: var(--bg-card);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: var(--shadow-large, 0 8px 40px rgba(0, 0, 0, 0.2));
+    border: 1px solid var(--border-light);
+    overflow: hidden;
+    transform: translateY(20px) scale(0.95);
+    transition: transform 0.3s ease;
+  }
+
+  .modal-overlay.active .modal {
+    transform: translateY(0) scale(1);
+  }
+
+  .modal-header {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .modal-logo {
+    font-size: 1.125rem;
+    font-weight: 700;
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .close-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-soft);
+    border: none;
+    border-radius: 8px;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: all 0.2s;
+  }
+
+  .close-btn:hover {
+    background: var(--bg-muted);
+    color: var(--text-primary);
+  }
+
+  .progress-bar {
+    height: 3px;
+    background: var(--bg-soft);
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--gradient-brand);
+    transition: width 0.3s ease;
+    width: 33%;
+  }
+
+  .progress-fill[data-step="1"] { width: 33%; }
+  .progress-fill[data-step="2"] { width: 66%; }
+  .progress-fill[data-step="3"] { width: 100%; }
+
+  .modal-body {
+    padding: 2rem;
+  }
+
+  .step-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .step-number {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-primary);
+    color: white;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .step-text {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+  }
+
+  .step-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .step-description {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: var(--bg-soft);
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-primary) 15%, transparent);
+  }
+
+  .form-input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .form-textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+
+  .option-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .team-size-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .option-card {
+    padding: 1.25rem;
+    background: var(--bg-soft);
+    border: 2px solid var(--border-light);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+
+  .option-card:hover {
+    border-color: var(--border-medium);
+    transform: translateY(-2px);
+  }
+
+  .option-card.selected {
+    border-color: var(--accent-primary);
+    background: color-mix(in srgb, var(--accent-primary) 8%, var(--bg-soft));
+  }
+
+  .option-icon {
+    margin-bottom: 0.5rem;
+    color: var(--accent-primary);
+  }
+
+  .option-icon svg {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .option-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .option-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .modal-footer {
+    padding: 1rem 2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .back-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .back-btn:hover {
+    color: var(--text-primary);
+  }
+
+  .next-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    background: var(--gradient-brand);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .next-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--accent-primary) 30%, transparent);
+  }
+
+  .next-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .arrow {
+    transition: transform 0.2s;
+  }
+
+  .next-btn:hover .arrow {
+    transform: translateX(3px);
+  }
+
+  .back-btn:hover .arrow {
+    transform: translateX(-3px);
+  }
+
+  @media (max-width: 540px) {
+    .modal-body {
+      padding: 1.5rem;
+    }
+
+    .option-cards {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+    }
+
+    .option-card {
+      padding: 1rem;
+    }
+
+    .step-title {
+      font-size: 1.25rem;
+    }
+  }
+</style>
+
+<script>
+  // Modal functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('get-started-modal');
+    const form = document.getElementById('get-started-form');
+    const progressFill = modal?.querySelector('.progress-fill');
+
+    // Open modal triggers
+    document.querySelectorAll('[data-open-modal="get-started"]').forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+      });
+    });
+
+    // Close modal
+    modal?.querySelector('.close-btn')?.addEventListener('click', closeModal);
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // Escape key closes modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal?.classList.contains('active')) {
+        closeModal();
+      }
+    });
+
+    function openModal() {
+      modal?.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      // Reset to step 1
+      showStep(1);
+    }
+
+    function closeModal() {
+      modal?.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Step navigation
+    function showStep(step: number) {
+      modal?.querySelectorAll('.modal-step').forEach(s => {
+        (s as HTMLElement).style.display = 'none';
+      });
+      const targetStep = modal?.querySelector(`.modal-step[data-step="${step}"]`) as HTMLElement;
+      if (targetStep) {
+        targetStep.style.display = 'block';
+      }
+      if (progressFill) {
+        progressFill.setAttribute('data-step', step.toString());
+      }
+    }
+
+    // Next buttons
+    modal?.querySelectorAll('.next-btn[data-next]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const nextStep = parseInt(btn.getAttribute('data-next') || '1');
+
+        // Validate current step
+        const currentStep = modal?.querySelector('.modal-step:not([style*="display: none"])');
+        if (currentStep) {
+          const requiredInputs = currentStep.querySelectorAll('input[required]');
+          let valid = true;
+          requiredInputs.forEach(input => {
+            if (!(input as HTMLInputElement).value) {
+              valid = false;
+              (input as HTMLInputElement).focus();
+            }
+          });
+          if (!valid) return;
+        }
+
+        showStep(nextStep);
+      });
+    });
+
+    // Back buttons
+    modal?.querySelectorAll('.back-btn[data-back]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const backStep = parseInt(btn.getAttribute('data-back') || '1');
+        showStep(backStep);
+      });
+    });
+
+    // Option card selection
+    modal?.querySelectorAll('.option-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const parent = card.closest('.option-cards');
+        const step = card.closest('.modal-step');
+
+        // Remove selection from siblings
+        parent?.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+
+        // Update hidden input
+        const value = card.getAttribute('data-value');
+        if (step?.getAttribute('data-step') === '2') {
+          const input = document.getElementById('project-type') as HTMLInputElement;
+          if (input) input.value = value || '';
+        } else if (step?.getAttribute('data-step') === '3') {
+          const input = document.getElementById('team-size') as HTMLInputElement;
+          if (input) input.value = value || '';
+        }
+      });
+    });
+
+    // Check URL for successful submission
+    if (window.location.search.includes('submitted=true')) {
+      // Show success message or toast
+      const url = new URL(window.location.href);
+      url.searchParams.delete('submitted');
+      window.history.replaceState({}, '', url.toString());
+
+      // Could show a toast notification here
+      alert('Thank you! We\'ll be in touch soon.');
+    }
+  });
+</script>
