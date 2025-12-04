@@ -18,11 +18,7 @@
     </div>
 
     <!-- Form -->
-    <form id="get-started-form" action="https://formsubmit.co/ajax/spark@supatent.ai" method="POST">
-      <!-- FormSubmit Configuration -->
-      <input type="hidden" name="_subject" value="New SUPATENT Interest">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
+    <form id="get-started-form">
 
       <!-- Step 1: Contact Info -->
       <div class="modal-step" data-step="1">
@@ -630,7 +626,7 @@
       });
     });
 
-    // Handle form submission via AJAX
+    // Handle form submission via AJAX to our API
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
 
@@ -642,13 +638,25 @@
       }
 
       try {
-        const formData = new FormData(form);
-        const response = await fetch(form.action, {
+        // Collect form data
+        const email = (document.getElementById('email') as HTMLInputElement)?.value;
+        const project_name = (document.getElementById('project-name') as HTMLInputElement)?.value;
+        const project_type = (document.getElementById('project-type') as HTMLInputElement)?.value;
+        const team_size = (document.getElementById('team-size') as HTMLInputElement)?.value;
+        const message = (document.getElementById('message') as HTMLTextAreaElement)?.value;
+
+        const response = await fetch('/api/waitlist', {
           method: 'POST',
-          body: formData,
           headers: {
-            'Accept': 'application/json'
-          }
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email,
+            project_name,
+            project_type,
+            team_size,
+            message
+          })
         });
 
         if (response.ok) {

@@ -3,10 +3,13 @@ import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://vibecms.com', // Update this with your actual domain
+  site: 'https://supatent.ai',
+  output: 'static',
+  adapter: vercel(),
 
   vite: {
     plugins: [tailwindcss()]
