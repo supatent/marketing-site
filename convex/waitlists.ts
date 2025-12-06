@@ -1,8 +1,10 @@
 import { v } from "convex/values";
 import { mutation, query, internalQuery } from "./_generated/server";
+import { internal } from "./_generated/api";
 
 /**
  * Join the waitlist - public mutation (no auth required)
+ * Automatically sends a welcome email to new signups
  */
 export const join = mutation({
   args: {
@@ -40,6 +42,20 @@ export const join = mutation({
       source: args.source,
       metadata: args.metadata,
       createdAt: Date.now(),
+    });
+
+    // Schedule welcome email (runs immediately after mutation completes)
+    const metadata = args.metadata as {
+      projectName?: string;
+      projectType?: string;
+      teamSize?: string;
+    } | undefined;
+
+    await ctx.scheduler.runAfter(0, internal.emails.sendWelcomeEmailInternal, {
+      email: normalizedEmail,
+      projectName: metadata?.projectName,
+      projectType: metadata?.projectType,
+      teamSize: metadata?.teamSize,
     });
 
     return { success: true, alreadyOnWaitlist: false };
