@@ -1,6 +1,6 @@
 ---
 // Get Started Modal - Multi-step wizard for collecting project details
-// Sends form data to spark@supatent.ai
+// Stores waitlist signups in Convex
 ---
 
 <!-- Modal Overlay -->
@@ -54,21 +54,11 @@
             <span class="step-text">of 3 steps</span>
           </div>
           <h2 class="step-title">What are you building?</h2>
-          <p class="step-description">Select the type of project you want to manage with SUPATENT</p>
+          <p class="step-description">Select all platforms that apply</p>
 
           <input type="hidden" id="project-type" name="project_type" value="">
 
-          <div class="option-cards">
-            <div class="option-card" data-value="Landing Page">
-              <div class="option-icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <rect x="3" y="3" width="18" height="18" rx="2"/>
-                  <path d="M3 9h18M9 21V9"/>
-                </svg>
-              </div>
-              <div class="option-title">Landing Page</div>
-              <div class="option-desc">Marketing & conversion</div>
-            </div>
+          <div class="option-cards multi-select">
             <div class="option-card" data-value="Web App">
               <div class="option-icon">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -78,6 +68,39 @@
               </div>
               <div class="option-title">Web App</div>
               <div class="option-desc">SaaS & products</div>
+            </div>
+            <div class="option-card" data-value="iOS App">
+              <div class="option-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M12 2C8.5 2 6 5 6 9c0 2.5 1.5 4.5 3 6l-1 5h8l-1-5c1.5-1.5 3-3.5 3-6 0-4-2.5-7-6-7z"/>
+                  <path d="M12 2c1-2 3-1 3 1"/>
+                </svg>
+              </div>
+              <div class="option-title">iOS App</div>
+              <div class="option-desc">iPhone & iPad</div>
+            </div>
+            <div class="option-card" data-value="Android App">
+              <div class="option-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4 10v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/>
+                  <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                  <path d="M4 10h16"/>
+                  <circle cx="8" cy="6" r="1"/>
+                  <circle cx="16" cy="6" r="1"/>
+                </svg>
+              </div>
+              <div class="option-title">Android App</div>
+              <div class="option-desc">Google Play</div>
+            </div>
+            <div class="option-card" data-value="Landing Page">
+              <div class="option-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <path d="M3 9h18M9 21V9"/>
+                </svg>
+              </div>
+              <div class="option-title">Landing Page</div>
+              <div class="option-desc">Marketing & conversion</div>
             </div>
             <div class="option-card" data-value="E-commerce">
               <div class="option-icon">
@@ -202,6 +225,23 @@
         <div class="modal-footer">
           <button type="button" class="back-btn" data-back="2"><span class="arrow">←</span> Back</button>
           <button type="submit" class="next-btn submit-btn">Request Access <span class="arrow">→</span></button>
+        </div>
+      </div>
+
+      <!-- Success State -->
+      <div class="modal-step success-step" data-step="success" style="display: none;">
+        <div class="modal-body" style="text-align: center; padding: 3rem 2rem;">
+          <div class="success-icon">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h2 class="step-title" style="margin-top: 1.5rem;">You're on the list!</h2>
+          <p class="step-description" style="margin-bottom: 0;">We'll be in touch soon with early access to SUPATENT. Check your inbox for updates.</p>
+        </div>
+        <div class="modal-footer" style="justify-content: center;">
+          <button type="button" class="next-btn close-success-btn">Got it</button>
         </div>
       </div>
     </form>
@@ -413,6 +453,26 @@
     background: color-mix(in srgb, var(--accent-primary) 8%, var(--bg-soft));
   }
 
+  /* Multi-select checkmark indicator */
+  .multi-select .option-card {
+    position: relative;
+  }
+
+  .multi-select .option-card.selected::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    background-size: 12px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
   .option-icon {
     margin-bottom: 0.5rem;
     color: var(--accent-primary);
@@ -499,6 +559,42 @@
     transform: translateX(-3px);
   }
 
+  .success-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: color-mix(in srgb, var(--accent-primary) 15%, transparent);
+    border-radius: 50%;
+    color: var(--accent-primary);
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .submit-btn.loading {
+    position: relative;
+    color: transparent;
+  }
+
+  .submit-btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
   @media (max-width: 540px) {
     .modal-body {
       padding: 1.5rem;
@@ -520,10 +616,16 @@
 </style>
 
 <script>
+  import { ConvexHttpClient } from "convex/browser";
+  import { api } from "../../convex/_generated/api";
+
+  // Convex client for waitlist submissions
+  const convex = new ConvexHttpClient(import.meta.env.PUBLIC_CONVEX_URL || "https://robust-robin-968.convex.cloud");
+
   // Modal functionality
   document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('get-started-modal');
-    const form = document.getElementById('get-started-form');
+    const form = document.getElementById('get-started-form') as HTMLFormElement;
     const progressFill = modal?.querySelector('.progress-fill');
 
     // Open modal triggers
@@ -540,6 +642,9 @@
       if (e.target === modal) closeModal();
     });
 
+    // Close success button
+    modal?.querySelector('.close-success-btn')?.addEventListener('click', closeModal);
+
     // Escape key closes modal
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && modal?.classList.contains('active')) {
@@ -552,6 +657,9 @@
       document.body.style.overflow = 'hidden';
       // Reset to step 1
       showStep(1);
+      // Reset form
+      form?.reset();
+      modal?.querySelectorAll('.option-card.selected').forEach(c => c.classList.remove('selected'));
     }
 
     function closeModal() {
@@ -560,7 +668,7 @@
     }
 
     // Step navigation
-    function showStep(step: number) {
+    function showStep(step: number | string) {
       modal?.querySelectorAll('.modal-step').forEach(s => {
         (s as HTMLElement).style.display = 'none';
       });
@@ -568,7 +676,7 @@
       if (targetStep) {
         targetStep.style.display = 'block';
       }
-      if (progressFill) {
+      if (progressFill && typeof step === 'number') {
         progressFill.setAttribute('data-step', step.toString());
       }
     }
@@ -609,89 +717,74 @@
       card.addEventListener('click', () => {
         const parent = card.closest('.option-cards');
         const step = card.closest('.modal-step');
+        const isMultiSelect = parent?.classList.contains('multi-select');
 
-        // Remove selection from siblings
-        parent?.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-        card.classList.add('selected');
+        if (isMultiSelect) {
+          // Toggle selection for multi-select
+          card.classList.toggle('selected');
 
-        // Update hidden input
-        const value = card.getAttribute('data-value');
-        if (step?.getAttribute('data-step') === '2') {
-          const input = document.getElementById('project-type') as HTMLInputElement;
-          if (input) input.value = value || '';
-        } else if (step?.getAttribute('data-step') === '3') {
-          const input = document.getElementById('team-size') as HTMLInputElement;
-          if (input) input.value = value || '';
+          // Update hidden input with all selected values
+          const selectedValues = Array.from(parent?.querySelectorAll('.option-card.selected') || [])
+            .map(c => c.getAttribute('data-value'))
+            .filter(Boolean)
+            .join(', ');
+
+          if (step?.getAttribute('data-step') === '2') {
+            const input = document.getElementById('project-type') as HTMLInputElement;
+            if (input) input.value = selectedValues;
+          }
+        } else {
+          // Single selection - remove selection from siblings
+          parent?.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+
+          // Update hidden input
+          const value = card.getAttribute('data-value');
+          if (step?.getAttribute('data-step') === '2') {
+            const input = document.getElementById('project-type') as HTMLInputElement;
+            if (input) input.value = value || '';
+          } else if (step?.getAttribute('data-step') === '3') {
+            const input = document.getElementById('team-size') as HTMLInputElement;
+            if (input) input.value = value || '';
+          }
         }
       });
     });
 
-    // Handle form submission via AJAX to our API
+    // Form submission to Convex
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const submitBtn = form.querySelector('.submit-btn') as HTMLButtonElement;
-      const originalText = submitBtn?.innerHTML;
-      if (submitBtn) {
-        submitBtn.innerHTML = 'Sending... <span class="arrow">→</span>';
-        submitBtn.disabled = true;
-      }
+      submitBtn.disabled = true;
+      submitBtn.classList.add('loading');
+
+      const email = (document.getElementById('email') as HTMLInputElement).value;
+      const projectName = (document.getElementById('project-name') as HTMLInputElement).value;
+      const projectType = (document.getElementById('project-type') as HTMLInputElement).value;
+      const teamSize = (document.getElementById('team-size') as HTMLInputElement).value;
+      const message = (document.getElementById('message') as HTMLTextAreaElement).value;
 
       try {
-        // Collect form data
-        const email = (document.getElementById('email') as HTMLInputElement)?.value;
-        const project_name = (document.getElementById('project-name') as HTMLInputElement)?.value;
-        const project_type = (document.getElementById('project-type') as HTMLInputElement)?.value;
-        const team_size = (document.getElementById('team-size') as HTMLInputElement)?.value;
-        const message = (document.getElementById('message') as HTMLTextAreaElement)?.value;
-
-        const response = await fetch('/api/waitlist', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
+        await convex.mutation(api.waitlists.join, {
+          email,
+          product: "supatent",
+          source: "marketing-site",
+          metadata: {
+            projectName,
+            projectType,
+            teamSize,
+            message,
           },
-          body: JSON.stringify({
-            email,
-            project_name,
-            project_type,
-            team_size,
-            message
-          })
         });
 
-        if (response.ok) {
-          // Show success state
-          const modalBody = form.querySelector('.modal-step[data-step="3"] .modal-body');
-          if (modalBody) {
-            modalBody.innerHTML = `
-              <div style="text-align: center; padding: 2rem 0;">
-                <div style="width: 64px; height: 64px; background: color-mix(in srgb, var(--accent-secondary) 20%, transparent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-secondary)" stroke-width="2">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                    <polyline points="22 4 12 14.01 9 11.01"/>
-                  </svg>
-                </div>
-                <h2 class="step-title">You're on the list!</h2>
-                <p class="step-description">We'll reach out soon to help you get started with SUPATENT.</p>
-              </div>
-            `;
-          }
-          const footer = form.querySelector('.modal-step[data-step="3"] .modal-footer');
-          if (footer) {
-            footer.innerHTML = `
-              <div></div>
-              <button type="button" class="next-btn" onclick="document.getElementById('get-started-modal').classList.remove('active'); document.body.style.overflow = '';">Done <span class="arrow">→</span></button>
-            `;
-          }
-        } else {
-          throw new Error('Submission failed');
-        }
+        // Show success state
+        showStep('success');
       } catch (error) {
-        if (submitBtn) {
-          submitBtn.innerHTML = originalText || 'Request Access <span class="arrow">→</span>';
-          submitBtn.disabled = false;
-        }
-        alert('Something went wrong. Please try again or email us directly at spark@supatent.ai');
+        console.error('Waitlist submission error:', error);
+        alert('Something went wrong. Please try again.');
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('loading');
       }
     });
   });
