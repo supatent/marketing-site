@@ -1,5 +1,5 @@
 import { v } from "convex/values";
-import { mutation, query, internalQuery } from "./_generated/server";
+import { mutation, internalMutation, internalQuery } from "./_generated/server";
 import { internal } from "./_generated/api";
 
 /**
@@ -63,9 +63,9 @@ export const join = mutation({
 });
 
 /**
- * List all waitlist entries for a product
+ * List all waitlist entries for a product (INTERNAL ONLY)
  */
-export const listByProduct = query({
+export const listByProduct = internalQuery({
   args: { product: v.string() },
   handler: async (ctx, args) => {
     return await ctx.db
@@ -76,9 +76,9 @@ export const listByProduct = query({
 });
 
 /**
- * Get waitlist statistics
+ * Get waitlist statistics (INTERNAL ONLY)
  */
-export const getStats = query({
+export const getStats = internalQuery({
   args: {},
   handler: async (ctx) => {
     const all = await ctx.db.query("waitlists").collect();
@@ -96,9 +96,9 @@ export const getStats = query({
 });
 
 /**
- * Mark entries as notified (for launch announcements)
+ * Mark entries as notified (INTERNAL ONLY - for launch announcements)
  */
-export const markNotified = mutation({
+export const markNotified = internalMutation({
   args: {
     product: v.string(),
   },
@@ -119,9 +119,9 @@ export const markNotified = mutation({
 });
 
 /**
- * Export emails for a product
+ * Export emails for a product (INTERNAL ONLY)
  */
-export const exportEmails = query({
+export const exportEmails = internalQuery({
   args: {
     product: v.string(),
     unnotifiedOnly: v.optional(v.boolean()),
